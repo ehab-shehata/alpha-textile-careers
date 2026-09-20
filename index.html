@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Textile | بوابة التوظيف المركزية</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- الهيدر -->
+    <header class="bg-white shadow-sm border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white font-black text-xl w-11 h-11 rounded-2xl flex items-center justify-center shadow-md shadow-blue-200">AT</div>
+                <div>
+                    <h1 class="font-black text-xl text-slate-900 tracking-wide">Alpha Textile</h1>
+                    <p class="text-xs text-slate-500">إشراف: Ehab Shehata — إدارة الموارد البشرية</p>
+                </div>
+            </div>
+            <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm shadow-md shadow-blue-500/20 transition">قدم طلب توظيف الآن</button>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي (Hero) -->
+    <section class="relative bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 text-white py-28 px-4 text-center overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="bg-blue-500/30 text-blue-200 text-xs font-bold px-4 py-2 rounded-full inline-block mb-6 border border-blue-400/20 tracking-wider">المنطقة الصناعية - أمريعة، الإسكندرية</span>
+            
+            <h2 class="text-4xl md:text-7xl font-black mb-4 tracking-tight bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent">
+                Alpha Textile
+            </h2>
+            
+            <p class="text-blue-200 text-lg md:text-2xl font-bold mb-6">بوابة التوظيف المفتوحة</p>
+            <p class="text-slate-300 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">انضم إلى فريق العمل المتطور لدينا. نرحب دائماً بالكفاءات المتميزة في جميع التخصصات لصناعة المنسوجات.</p>
+            
+            <div class="flex justify-center">
+                <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-4 rounded-2xl shadow-xl shadow-blue-600/30 transition transform hover:-translate-y-0.5 text-base">سجل بياناتك ووظيفتك المستهدفة</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- نبذة تعريفية أو تعليمات -->
+    <main class="max-w-4xl mx-auto px-4 py-20 text-center">
+        <div class="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 mb-16">
+            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto text-2xl font-black mb-6">💼</div>
+            <h3 class="text-2xl font-black text-slate-900 mb-3">كيف تنضم إلينا؟</h3>
+            <p class="text-slate-500 text-sm md:text-base leading-relaxed max-w-xl mx-auto mb-8">
+                نظراً لتوسعنا المستمر، يمكنك تقديم طلب توظيف مباشر بتحديد الوظيفة التي تناسب خبرتك، وسيقوم فريق الموارد البشرية  <span class="text-slate-800 font-bold"> </span> بمراجعة طلبك والتواصل معك فور توفر شاغر يناسب إمكانياتك.
+            </p>
+            <button onclick="openModal()" class="bg-slate-900 hover:bg-blue-600 text-white font-bold px-8 py-3.5 rounded-2xl transition text-sm shadow-md">ابدأ تسجيل طلبك الآن</button>
+        </div>
+
+        <!-- قسم فروع الشركة وطرق التواصل -->
+        <div class="text-right mb-16">
+            <div class="text-center mb-10">
+                <h3 class="text-2xl md:text-3xl font-black text-slate-900 mb-2">فروعنا وطرق التواصل</h3>
+                <p class="text-slate-500 text-sm">يسعدنا تلقي استفساراتكم وزيارتكم في مقرات الشركة</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- فرع 1 -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <span class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1.5 rounded-lg">الفرع الرئيسي</span>
+                        <h4 class="text-xl font-black text-slate-900 mt-4 mb-2">الفاتكستايل 1</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">بلوك 800، المنطقة الحرة - العامرية، الإسكندرية</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-semibold">الهاتف / واتساب</span>
+                        <a href="tel:01211167622" dir="ltr" class="text-blue-600 font-bold hover:underline text-base">01211167622</a>
+                    </div>
+                </div>
+
+                <!-- فرع 2 -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <span class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1.5 rounded-lg">الفرع الثاني</span>
+                        <h4 class="text-xl font-black text-slate-900 mt-4 mb-2">الفاتكستايل 2</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">بلوك 307، المنطقة الحرة - العامرية، الإسكندرية</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-semibold">الهاتف / واتساب</span>
+                        <a href="tel:01207109297" dir="ltr" class="text-blue-600 font-bold hover:underline text-base">01207109297</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم خريطة جوجل المحدث بموقع Alpha Textile Gamateks -->
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 overflow-hidden text-right">
+            <h4 class="text-xl font-black text-slate-900 mb-2 px-2">موقعنا الجغرافي على خريطة جوجل</h4>
+            <p class="text-slate-500 text-xs mb-6 px-2">Alpha Textile Gamateks — الإسكندرية</p>
+            <div class="w-full h-96 rounded-2xl overflow-hidden border border-slate-100">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.5!2d29.77!3d31.02!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5ec98341255e5%3A0x305e75955183362d!2sAlpha%20Textile%20Gamateks!5e0!3m2!1sen!2seg!4v1680000000000!5m2!1sen!2seg" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </main>
+
+    <!-- نافذة استمارة التقديم المفتوحة (Modal) -->
+    <div id="applicationModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute left-6 top-6 text-slate-400 hover:text-slate-700 font-black text-xl">✕</button>
+            
+            <div class="mb-6">
+                <span class="text-xs text-blue-600 font-bold bg-blue-50 px-3 py-1.5 rounded-lg">Alpha Textile — طلب توظيف عام</span>
+                <h3 class="text-2xl font-black text-slate-900 mt-3">استمارة التقديم</h3>
+                <p class="text-xs text-slate-500 mt-1">اكتب المسمى الوظيفي المستهدف وبياناتك الشخصية بدقة.</p>
+            </div>
+
+            <!-- الفورم مربوط برابط Formspree الخاص بك -->
+            <form id="jobForm" action="https://formspree.io/f/xbglgdge" method="POST" class="space-y-4">
+                
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">المسمى الوظيفي المستهدف *</label>
+                    <input type="text" required name="target_job" placeholder="مثال: محاسب تكاليف، مهندس إنتاج، أخصائي HR..." class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">الاسم الكامل *</label>
+                    <input type="text" required name="full_name" placeholder="اكتب اسمك الثلاثي" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5">رقم الهاتف (واتساب) *</label>
+                        <input type="tel" required name="phone" placeholder="010xxxxxxxx" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5">البريد الإلكتروني *</label>
+                        <input type="email" required name="email" placeholder="name@example.com" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">سنوات الخبرة *</label>
+                    <select name="experience" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
+                        <option value="حديث التخرج">حديث التخرج (أقل من سنة)</option>
+                        <option value="1-3 سنوات">من 1 إلى 3 سنوات</option>
+                        <option value="3-5 سنوات">من 3 إلى 5 سنوات</option>
+                        <option value="أكثر من 5 سنوات">أكثر من 5 سنوات</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">نبذة عن خبراتك أو رابط السيرة الذاتية (CV) *</label>
+                    <textarea name="bio" rows="3" required placeholder="اكتب نبذة مختصرة عن خلفيتك المهنية أو الصق رابط السيرة الذاتية..." class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition resize-none bg-slate-50/50"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-blue-500/20 transition text-sm mt-2">إرسال الطلب الآن</button>
+            </form>
+
+            <!-- رسالة النجاح -->
+            <div id="successMessage" class="hidden text-center py-8">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold mb-4">✓</div>
+                <h4 class="text-2xl font-black text-slate-900 mb-2">تم إرسال طلبك بنجاح!</h4>
+                <p class="text-sm text-slate-500 mb-6">شكراً لك، تم حفظ بياناتك وتحديد وظيفتك المستهدفة لدى إدارة Alpha Textile بنجاح.</p>
+                <button onclick="closeModal()" class="bg-slate-900 text-white text-sm font-semibold px-8 py-3 rounded-2xl">إغلاق النافذة</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="bg-white border-t border-slate-100 py-8 text-center text-xs text-slate-400">
+        <p>Alpha Textile © 2026 — إشراف وتنفيذ: Ehab Shehata</p>
+    </footer>
+
+    <!-- جافاسكريبت للتحكم بالواجهة وإرسال البيانات -->
+    <script>
+        const modal = document.getElementById('applicationModal');
+        const jobForm = document.getElementById('jobForm');
+        const successMessage = document.getElementById('successMessage');
+
+        function openModal() {
+            jobForm.reset();
+            jobForm.classList.remove('GitHub_or_local');
+            jobForm.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        jobForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(jobForm);
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = "جاري الإرسال...";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(jobForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    jobForm.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                } else {
+                    alert('حدث خطأ أثناء الإرسال، برجاء المحاولة مرة أخرى.');
+                }
+            } catch (error) {
+                alert('تأكد من اتصالك بالإنترنت.');
+            } finally {
+                submitBtn.innerText = "إرسال الطلب الآن";
+                submitBtn.disabled = false;
+            }
+        });
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
