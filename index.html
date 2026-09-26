@@ -11,99 +11,134 @@
         body { font-family: 'Cairo', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 text-slate-100 antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- الهيدر -->
-    <header class="bg-white shadow-sm border-b border-slate-100 sticky top-0 z-50">
+    <!-- الهيدر بتصميم زجاجي عصري -->
+    <header class="bg-slate-900/80 backdrop-blur-md shadow-lg border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="bg-blue-600 text-white font-black text-xl w-11 h-11 rounded-2xl flex items-center justify-center shadow-md shadow-blue-200">AT</div>
+                <div class="bg-gradient-to-tr from-blue-600 to-indigo-500 text-white font-black text-xl w-11 h-11 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30">AT</div>
                 <div>
-                    <h1 class="font-black text-xl text-slate-900 tracking-wide">Alpha Textile</h1>
-                    <p class="text-xs text-slate-500">إشراف: Ehab Shehata — إدارة الموارد البشرية</p>
+                    <h1 class="font-black text-xl text-white tracking-wide">Alpha Textile</h1>
+                    <p class="text-xs text-blue-400">إدارة الموارد البشرية</p>
                 </div>
             </div>
-            <div class="flex items-center gap-2">
-                <!-- زر الانتقال للبورفيلو الشخصي -->
-                <a href="portfolio.html" class="bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold px-4 py-2.5 rounded-xl text-sm transition hidden sm:inline-block">سيرتي الذاتية وأعمالي</a>
-                <!-- زر طلب التوظيف -->
-                <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm shadow-md shadow-blue-500/20 transition">قدم طلب توظيف الآن</button>
+            <div>
+                <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-2.5 rounded-xl text-sm shadow-lg shadow-blue-600/30 transition transform hover:-translate-y-0.5">قدم طلب توظيف الآن</button>
             </div>
         </div>
     </header>
 
     <!-- القسم الرئيسي (Hero) -->
-    <section class="relative bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 text-white py-28 px-4 text-center overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <section class="relative py-24 px-4 text-center overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px]"></div>
         <div class="max-w-4xl mx-auto relative z-10">
-            <span class="bg-blue-500/30 text-blue-200 text-xs font-bold px-4 py-2 rounded-full inline-block mb-6 border border-blue-400/20 tracking-wider">المنطقة الصناعية - العامرية، الإسكندرية</span>
+            <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-4 py-2 rounded-full inline-block mb-6 border border-blue-500/20 tracking-wider backdrop-blur-sm">المنطقة الصناعية - العامرية، الإسكندرية</span>
             
-            <h2 class="text-4xl md:text-7xl font-black mb-4 tracking-tight bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent">
+            <h2 class="text-4xl md:text-7xl font-black mb-4 tracking-tight bg-gradient-to-r from-white via-blue-200 to-indigo-400 bg-clip-text text-transparent">
                 Alpha Textile
             </h2>
             
-            <p class="text-blue-200 text-lg md:text-2xl font-bold mb-6">بوابة التوظيف المفتوحة</p>
-            <p class="text-slate-300 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">انضم إلى فريق العمل المتطور لدينا. نرحب دائماً بالكفاءات المتميزة في جميع التخصصات لصناعة المنسوجات.</p>
+            <p class="text-blue-300 text-lg md:text-2xl font-bold mb-6">بوابة التوظيف المفتوحة</p>
+            <p class="text-slate-400 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">انضم إلى فريق العمل المتطور لدينا. نرحب دائماً بالكفاءات المتميزة في جميع التخصصات لصناعة المنسوجات.</p>
             
-            <div class="flex justify-center gap-4 flex-wrap">
+            <div>
                 <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-2xl shadow-xl shadow-blue-600/30 transition transform hover:-translate-y-0.5 text-base">سجل بياناتك ووظيفتك المستهدفة</button>
-                <a href="portfolio.html" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-8 py-4 rounded-2xl backdrop-blur-md transition text-base">استعرض أعمال وسيرة المشرف</a>
             </div>
         </div>
     </section>
 
-    <!-- نبذة تعريفية أو تعليمات -->
-    <main class="max-w-4xl mx-auto px-4 py-20 text-center">
-        <div class="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 mb-16">
-            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto text-2xl font-black mb-6">💼</div>
-            <h3 class="text-2xl font-black text-slate-900 mb-3">كيف تنضم إلينا؟</h3>
-            <p class="text-slate-500 text-sm md:text-base leading-relaxed max-w-xl mx-auto mb-8">
-                نظراً لتوسعنا المستمر، يمكنك تقديم طلب توظيف مباشر بتحديد الوظيفة التي تناسب خبرتك، وسيقوم فريق الموارد البشرية بمراجعة طلبك والتواصل معك فور توفر شاغر يناسب إمكانياتك.
+    <!-- المحتوى الرئيسي -->
+    <main class="max-w-4xl mx-auto px-4 py-10 w-full space-y-16">
+        
+        <!-- الملف التعريفي المختصر للشركة -->
+        <div class="bg-slate-800/50 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-xl border border-slate-700/60 text-right">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center text-xl font-black border border-blue-500/20">🏢</div>
+                <div>
+                    <h3 class="text-2xl font-black text-white">الملف التعريفي للشركة</h3>
+                    <p class="text-xs text-blue-400">Alpha Textile Co. Profile</p>
+                </div>
+            </div>
+
+            <p class="text-slate-300 text-base leading-relaxed mb-8">
+                <strong>Alpha Textile Co. (ألفا تكستايل)</strong> شركة متخصصة في تصنيع وتصدير الملابس الجاهزة، وتعمل تحت مظلة مجموعة Gamateks التركية.
             </p>
-            <button onclick="openModal()" class="bg-slate-900 hover:bg-blue-600 text-white font-bold px-8 py-3.5 rounded-2xl transition text-sm shadow-md">ابدأ تسجيل طلبك الآن</button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-slate-900/50 p-5 rounded-2xl border border-slate-700/40">
+                    <h4 class="font-bold text-blue-400 mb-2">📍 الموقع والبنية</h4>
+                    <p class="text-slate-300 leading-relaxed">المنطقة الحرة العامة بالعامرية، الإسكندرية – بلوك 800، مع توسعات ببلوك 307.</p>
+                </div>
+
+                <div class="bg-slate-900/50 p-5 rounded-2xl border border-slate-700/40">
+                    <h4 class="font-bold text-blue-400 mb-2">⚙️ النشاط والقدرات</h4>
+                    <p class="text-slate-300 leading-relaxed">تصنيع الملابس الجاهزة والمنسوجات والتصدير للأسواق العالمية، وإنتاج ملابس محاكة وفق مواصفات ومعايير العلامات التجارية العالمية.</p>
+                </div>
+
+                <div class="bg-slate-900/50 p-5 rounded-2xl border border-slate-700/40">
+                    <h4 class="font-bold text-blue-400 mb-2">🔍 الجودة والعمليات</h4>
+                    <p class="text-slate-300 leading-relaxed">تطبيق أنظمة رقابة جودة ومتابعة دقيقة لجميع مراحل الإنتاج لضمان أعلى معايير الكفاءة.</p>
+                </div>
+
+                <div class="bg-slate-900/50 p-5 rounded-2xl border border-slate-700/40">
+                    <h4 class="font-bold text-blue-400 mb-2">👥 القوى العاملة والامتثال</h4>
+                    <p class="text-slate-300 leading-relaxed">فرق متخصصة في الإنتاج، الجودة، الهندسة الصناعية، سلاسل الإمداد، والموارد البشرية، مع الالتزام بقوانين العمل المصرية والمعايير والتدريب المستمر.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- كارت التوجيه السريع -->
+        <div class="bg-slate-800/50 backdrop-blur-xl rounded-3xl p-10 shadow-xl border border-slate-700/60 text-center">
+            <div class="w-16 h-16 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mx-auto text-2xl font-black mb-6 border border-blue-500/20">💼</div>
+            <h3 class="text-2xl font-black text-white mb-3">كيف تنضم إلينا؟</h3>
+            <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl mx-auto mb-8">
+                نظراً لتوسعنا المستمر، يمكنك تقديم طلب توظيف مباشر بتحديد الوظيفة والفرع الذي تناسب خبرتك، وسيقوم فريق الموارد البشرية بمراجعة طلبك والتواصل معك فور توفر شاغر.
+            </p>
+            <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-2xl transition text-sm shadow-lg shadow-blue-600/20">ابدأ تسجيل طلبك الآن</button>
         </div>
 
         <!-- قسم فروع الشركة وطرق التواصل -->
-        <div class="text-right mb-16">
+        <div class="text-right">
             <div class="text-center mb-10">
-                <h3 class="text-2xl md:text-3xl font-black text-slate-900 mb-2">فروعنا وطرق التواصل</h3>
-                <p class="text-slate-500 text-sm">يسعدنا تلقي استفساراتكم وزيارتكم في مقرات الشركة</p>
+                <h3 class="text-2xl md:text-3xl font-black text-white mb-2">فروعنا وطرق التواصل</h3>
+                <p class="text-slate-400 text-sm">يسعدنا تلقي استفساراتكم وزيارتكم في مقرات الشركة</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- فرع 1 -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                <div class="bg-slate-800/50 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-slate-700/60 flex flex-col justify-between hover:border-blue-500/50 transition">
                     <div>
-                        <span class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1.5 rounded-lg">الفرع الرئيسي</span>
-                        <h4 class="text-xl font-black text-slate-900 mt-4 mb-2">الفاتكستايل 1</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-6">بلوك 800، المنطقة الحرة - العامرية، الإسكندرية</p>
+                        <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1.5 rounded-lg border border-blue-500/20">الفرع الرئيسي (ألفا 1)</span>
+                        <h4 class="text-xl font-black text-white mt-4 mb-2">الفاتكستايل 1</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">بلوك 800، المنطقة الحرة - العامرية، الإسكندرية</p>
                     </div>
-                    <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                    <div class="border-t border-slate-700/60 pt-4 flex items-center justify-between">
                         <span class="text-xs text-slate-400 font-semibold">الهاتف / واتساب</span>
-                        <a href="tel:01211167622" dir="ltr" class="text-blue-600 font-bold hover:underline text-base">01211167622</a>
+                        <a href="tel:01211167622" dir="ltr" class="text-blue-400 font-bold hover:underline text-base">01211167622</a>
                     </div>
                 </div>
 
                 <!-- فرع 2 -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                <div class="bg-slate-800/50 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-slate-700/60 flex flex-col justify-between hover:border-blue-500/50 transition">
                     <div>
-                        <span class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1.5 rounded-lg">الفرع الثاني</span>
-                        <h4 class="text-xl font-black text-slate-900 mt-4 mb-2">الفاتكستايل 2</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-6">بلوك 307، المنطقة الحرة - العامرية، الإسكندرية</p>
+                        <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1.5 rounded-lg border border-blue-500/20">الفرع الثاني (ألفا 2)</span>
+                        <h4 class="text-xl font-black text-white mt-4 mb-2">الفاتكستايل 2</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">بلوك 307، المنطقة الحرة - العامرية، الإسكندرية</p>
                     </div>
-                    <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                    <div class="border-t border-slate-700/60 pt-4 flex items-center justify-between">
                         <span class="text-xs text-slate-400 font-semibold">الهاتف / واتساب</span>
-                        <a href="tel:01207109297" dir="ltr" class="text-blue-600 font-bold hover:underline text-base">01207109297</a>
+                        <a href="tel:01207109297" dir="ltr" class="text-blue-400 font-bold hover:underline text-base">01207109297</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- قسم خريطة جوجل المحدث بموقع Alpha Textile Gamateks -->
-        <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 overflow-hidden text-right">
-            <h4 class="text-xl font-black text-slate-900 mb-2 px-2">موقعنا الجغرافي على خريطة جوجل</h4>
-            <p class="text-slate-500 text-xs mb-6 px-2">Alpha Textile Gamateks — الإسكندرية</p>
-            <div class="w-full h-96 rounded-2xl overflow-hidden border border-slate-100">
+        <!-- قسم خريطة جوجل -->
+        <div class="bg-slate-800/50 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-slate-700/60 overflow-hidden text-right">
+            <h4 class="text-xl font-black text-white mb-2 px-2">موقعنا الجغرافي على خريطة جوجل</h4>
+            <p class="text-slate-400 text-xs mb-6 px-2">Alpha Textile Gamateks — الإسكندرية</p>
+            <div class="w-full h-96 rounded-2xl overflow-hidden border border-slate-700/60">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.5!2d29.77!3d31.02!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5ec98341255e5%3A0x305e75955183362d!2sAlpha%20Textile%20Gamateks!5e0!3m2!1sen!2seg!4v1680000000000!5m2!1sen!2seg" 
                     width="100%" 
@@ -117,82 +152,110 @@
         </div>
     </main>
 
-    <!-- نافذة استمارة التقديم المفتوحة (Modal) -->
-    <div id="applicationModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-md hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal()" class="absolute left-6 top-6 text-slate-400 hover:text-slate-700 font-black text-xl">✕</button>
+    <!-- نافذة استمارة التقديم (Modal) -->
+    <div id="applicationModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto text-slate-100">
+            <button onclick="closeModal()" class="absolute left-6 top-6 text-slate-400 hover:text-white font-black text-xl">✕</button>
             
             <div class="mb-6">
-                <span class="text-xs text-blue-600 font-bold bg-blue-50 px-3 py-1.5 rounded-lg">Alpha Textile — طلب توظيف عام</span>
-                <h3 class="text-2xl font-black text-slate-900 mt-3">استمارة التقديم</h3>
-                <p class="text-xs text-slate-500 mt-1">اكتب المسمى الوظيفي المستهدف وبياناتك الشخصية بدقة.</p>
+                <span class="text-xs text-blue-400 font-bold bg-blue-500/10 border border-blue-500/20 px-3 py-1.5 rounded-lg">Alpha Textile — طلب توظيف</span>
+                <h3 class="text-2xl font-black text-white mt-3">استمارة التقديم</h3>
+                <p class="text-xs text-slate-400 mt-1">اختر الفرع المستهدف لتوجيه طلبك إلى الإيميل المختص مباشرة.</p>
             </div>
 
-            <!-- الفورم مربوط برابط Formspree الخاص بك -->
+            <!-- الفورم مع حقل اختيار الفرع -->
             <form id="jobForm" action="https://formspree.io/f/xbglgdge" method="POST" class="space-y-4">
                 
+                <!-- اختيار الفرع المستهدف -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5">المسمى الوظيفي المستهدف *</label>
-                    <input type="text" required name="target_job" placeholder="مثال: محاسب تكاليف، مهندس إنتاج، أخصائي HR..." class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5">اختر الفرع المستهدف *</label>
+                    <select id="branchSelect" name="branch" required class="w-full border border-slate-700 bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+                        <option value="alpha1" class="bg-slate-900">ألفا 1 (بلوك 800) — إشراف: inhab.shehata@gamateks.com.tr</option>
+                        <option value="alpha2" class="bg-slate-900">ألفا 2 (بلوك 307) — إشراف: alphahr.eg@gamateks.com.tr</option>
+                    </select>
+                    <!-- حقل مخفي لتمرير البريد الإلكتروني المستلم بناءً على الاختيار -->
+                    <input type="hidden" id="recipientEmail" name="_replyto" value="inhab.shehata@gamateks.com.tr">
+                    <input type="hidden" name="_subject" id="formSubject" value="طلب توظيف جديد - ألفا 1">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5">الاسم الكامل *</label>
-                    <input type="text" required name="full_name" placeholder="اكتب اسمك الثلاثي" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5">المسمى الوظيفي المستهدف *</label>
+                    <input type="text" required name="target_job" placeholder="مثال: محاسب تكاليف، مهندس إنتاج، أخصائي HR..." class="w-full border border-slate-700 bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5">الاسم الكامل *</label>
+                    <input type="text" required name="full_name" placeholder="اكتب اسمك الثلاثي" class="w-full border border-slate-700 bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1.5">رقم الهاتف (واتساب) *</label>
-                        <input type="tel" required name="phone" placeholder="010xxxxxxxx" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">رقم الهاتف (واتساب) *</label>
+                        <input type="tel" required name="phone" placeholder="010xxxxxxxx" class="w-full border border-slate-700 bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1.5">البريد الإلكتروني *</label>
-                        <input type="email" required name="email" placeholder="name@example.com" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">البريد الإلكتروني *</label>
+                        <input type="email" required name="email" placeholder="name@example.com" class="w-full border border-slate-700 bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5">سنوات الخبرة *</label>
-                    <select name="experience" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition bg-slate-50/50">
-                        <option value="حديث التخرج">حديث التخرج (أقل من سنة)</option>
-                        <option value="1-3 سنوات">من 1 إلى 3 سنوات</option>
-                        <option value="3-5 سنوات">من 3 إلى 5 سنوات</option>
-                        <option value="أكثر من 5 سنوات">أكثر من 5 سنوات</option>
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5">سنوات الخبرة *</label>
+                    <select name="experience" class="w-full border border-slate-700 bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+                        <option value="حديث التخرج" class="bg-slate-900">حديث التخرج (أقل من سنة)</option>
+                        <option value="1-3 سنوات" class="bg-slate-900">من 1 إلى 3 سنوات</option>
+                        <option value="3-5 سنوات" class="bg-slate-900">من 3 إلى 5 سنوات</option>
+                        <option value="أكثر من 5 سنوات" class="bg-slate-900">أكثر من 5 سنوات</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5">نبذة عن خبراتك أو رابط السيرة الذاتية (CV) *</label>
-                    <textarea name="bio" rows="3" required placeholder="اكتب نبذة مختصرة عن خلفيتك المهنية أو الصق رابط السيرة الذاتية..." class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 transition resize-none bg-slate-50/50"></textarea>
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5">نبذة عن خبراتك أو رابط السيرة الذاتية (CV) *</label>
+                    <textarea name="bio" rows="3" required placeholder="اكتب نبذة مختصرة عن خلفيتك المهنية أو الصق رابط السيرة الذاتية..." class="w-full border border-slate-700 bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
                 </div>
 
-                <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-blue-500/20 transition text-sm mt-2">إرسال الطلب الآن</button>
+                <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-blue-600/30 transition text-sm mt-2">إرسال الطلب الآن</button>
             </form>
 
             <!-- رسالة النجاح -->
             <div id="successMessage" class="hidden text-center py-8">
-                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold mb-4">✓</div>
-                <h4 class="text-2xl font-black text-slate-900 mb-2">تم إرسال طلبك بنجاح!</h4>
-                <p class="text-sm text-slate-500 mb-6">شكراً لك، تم حفظ بياناتك وتحديد وظيفتك المستهدفة لدى إدارة Alpha Textile بنجاح.</p>
-                <button onclick="closeModal()" class="bg-slate-900 text-white text-sm font-semibold px-8 py-3 rounded-2xl">إغلاق النافذة</button>
+                <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full flex items-center justify-center mx-auto text-2xl font-bold mb-4">✓</div>
+                <h4 class="text-2xl font-black text-white mb-2">تم إرسال طلبك بنجاح!</h4>
+                <p id="successText" class="text-sm text-slate-400 mb-6">شكراً لك، تم توجيه بياناتك وإرسالها إلى القسم المختص بالفرع بنجاح.</p>
+                <button onclick="closeModal()" class="bg-slate-800 hover:bg-slate-700 text-white text-sm font-semibold px-8 py-3 rounded-2xl border border-slate-700">إغلاق النافذة</button>
             </div>
         </div>
     </div>
 
     <!-- الفوتر -->
-    <footer class="bg-white border-t border-slate-100 py-8 text-center text-xs text-slate-400">
-        <p>Alpha Textile © 2026 — إشراف وتنفيذ: Ehab Shehata | <a href="portfolio.html" class="text-blue-600 hover:underline">عرض الملف الشخصي والأعمال</a></p>
+    <footer class="bg-slate-900 border-t border-slate-800 py-8 text-center text-xs text-slate-500 mt-20">
+        <p>Alpha Textile © 2026 — إدارة الموارد البشرية</p>
     </footer>
 
-    <!-- جافاسكريبت للتحكم بالواجهة وإرسال البيانات -->
+    <!-- جافاسكريبت للتحكم وتوجيه الإيميلات حسب الفرع -->
     <script>
         const modal = document.getElementById('applicationModal');
         const jobForm = document.getElementById('jobForm');
         const successMessage = document.getElementById('successMessage');
+        const branchSelect = document.getElementById('branchSelect');
+        const recipientEmail = document.getElementById('recipientEmail');
+        const formSubject = document.getElementById('formSubject');
+        const successText = document.getElementById('successText');
+
+        // تحديث الإيميل والموضوع تلقائياً بناءً على اختيار الفرع
+        branchSelect.addEventListener('change', function() {
+            if (this.value === 'alpha1') {
+                recipientEmail.value = "inhab.shehata@gamateks.com.tr";
+                formSubject.value = "طلب توظيف جديد - ألفا 1 (بلوك 800)";
+            } else {
+                recipientEmail.value = "alphahr.eg@gamateks.com.tr";
+                formSubject.value = "طلب توظيف جديد - ألفا 2 (بلوك 307)";
+            }
+        });
 
         function openModal() {
             jobForm.reset();
+            branchSelect.dispatchEvent(new Event('change'));
             jobForm.classList.remove('hidden');
             successMessage.classList.add('hidden');
             modal.classList.remove('hidden');
@@ -207,8 +270,14 @@
         jobForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const formData = new FormData(jobForm);
+            
+            // إضافة الإيميل المستهدف الفعلي صراحة في بيانات الـ FormData لـ Formspree
+            const selectedBranch = branchSelect.value;
+            const targetEmail = selectedBranch === 'alpha1' ? 'inhab.shehata@gamateks.com.tr' : 'alphahr.eg@gamateks.com.tr';
+            formData.append('_to', targetEmail);
+
             const submitBtn = document.getElementById('submitBtn');
-            submitBtn.innerText = "جاري الإرسال...";
+            submitBtn.innerText = "جاري إرسال الطلب للفرع المختص...";
             submitBtn.disabled = true;
 
             try {
@@ -220,6 +289,7 @@
 
                 if (response.ok) {
                     jobForm.classList.add('hidden');
+                    successText.innerText = `شكراً لك، تم توجيه بياناتك بنجاح إلى البريد المختص للفرع (${targetEmail}).`;
                     successMessage.classList.remove('hidden');
                 } else {
                     alert('حدث خطأ أثناء الإرسال، برجاء المحاولة مرة أخرى.');
