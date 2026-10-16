@@ -1,519 +1,565 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpha Textile | بوابة التوظيف المركزية</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Cairo', sans-serif; }
-        
-        /* حركة الإطار الذهبي المتوهج للشعار */
-        @keyframes goldGlow {
-            0% {
-                border-color: #fbbf24;
-                box-shadow: 0 0 15px rgba(251, 191, 36, 0.4), inset 0 0 10px rgba(251, 191, 36, 0.2);
-            }
-            50% {
-                border-color: #d97706;
-                box-shadow: 0 0 25px rgba(217, 119, 6, 0.7), inset 0 0 15px rgba(217, 119, 6, 0.4);
-            }
-            100% {
-                border-color: #fbbf24;
-                box-shadow: 0 0 15px rgba(251, 191, 36, 0.4), inset 0 0 10px rgba(251, 191, 36, 0.2);
-            }
-        }
-
-        .gold-border-anim {
-            border: 2px solid #fbbf24;
-            animation: goldGlow 3s infinite ease-in-out;
-        }
-
-        .float-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .float-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.2);
-        }
-
-        #toast {
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="بوابة التوظيف المركزية لشركة Alpha Textile في العامرية، الإسكندرية.">
+  <title>Alpha Textile | بوابة التوظيف المركزية</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Cairo',sans-serif}
+    @keyframes goldGlow{0%,100%{border-color:#fbbf24;box-shadow:0 0 15px #fbbf2466,inset 0 0 10px #fbbf2433}50%{border-color:#d97706;box-shadow:0 0 25px #d97706b3,inset 0 0 15px #d9770666}}
+    .gold-border-anim{border:2px solid #fbbf24;animation:goldGlow 3s infinite ease-in-out}
+    .float-hover{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+    .float-hover:hover{transform:translateY(-4px);box-shadow:0 20px 30px -10px #3b82f633}
+    #toast{transition:transform .25s ease,opacity .25s ease}
+    body.modal-open{overflow:hidden}
+    [dir="ltr"] .border-r-4{border-right-width:0;border-left-width:4px}
+    [dir="ltr"] .pr-3{padding-right:0;padding-left:.75rem}
+    [dir="ltr"] .border-r-gold{border-right-color:transparent;border-left-color:#b08d57}
+    button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #b08d57;outline-offset:2px}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
 </head>
-<body class="bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-900 dark:to-indigo-950 text-slate-800 dark:text-slate-100 antialiased min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white transition-colors duration-300">
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 text-slate-800 dark:text-slate-100 antialiased transition-colors duration-300">
+  <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white text-xs py-2 px-4 text-center font-bold shadow-md">
+    <span class="bg-amber-300 text-slate-950 px-2 py-0.5 rounded-full text-[10px] ml-2">توظيف</span>
+    باب التقديم متاح للوظائف المعروضة في فرعي العامرية — بلوك 800 وبلوك 307.
+  </div>
 
-    <!-- شريط الإعلانات المتحرك العلوي -->
-    <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 dark:from-blue-700 dark:via-indigo-700 dark:to-blue-800 text-white text-xs py-2 px-4 text-center font-bold tracking-wide shadow-md overflow-hidden relative">
-        <div class="flex items-center justify-center gap-2">
-            <span class="bg-amber-300 text-slate-950 px-2 py-0.5 rounded-full text-[10px] animate-pulse">جديد</span>
-            <span>باب التعيينات مفتوح الآن في فروع العامرية (بلوك 800 وبلوك 307). سارع بتقديم طلبك!</span>
-        </div>
+  <header class="bg-white/85 dark:bg-slate-900/85 backdrop-blur-md shadow-lg border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center gap-3">
+      <a href="#top" class="flex items-center gap-3 group min-w-0" aria-label="العودة إلى أعلى الصفحة">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden bg-white flex-shrink-0 gold-border-anim shadow-md"><img src="https://raw.githubusercontent.com/ehab-shehata/alpha-textile-careers/main/681617835_989491430202752_8103851497895617397_n.jpg" alt="شعار Alpha Textile" class="w-full h-full object-cover" onerror="this.style.display='none'"></div>
+        <div><div class="font-black text-lg sm:text-xl text-slate-900 dark:text-white">Alpha Textile</div><div class="text-xs text-blue-600 dark:text-blue-400 font-semibold">إدارة الموارد البشرية</div></div>
+      </a>
+      <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+        <button type="button" id="languageToggle" class="h-10 px-3 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-700 dark:text-blue-300 font-black text-xs hover:scale-105 transition" aria-label="Switch language">EN</button>
+        <button type="button" id="themeToggle" class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center hover:scale-105 transition" aria-label="تبديل الوضع اللوني" title="تبديل الوضع اللوني"><span id="themeIcon">☀</span></button>
+        <button type="button" data-open-modal class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-3 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm shadow-lg transition">قدم طلب توظيف</button>
+      </div>
     </div>
+  </header>
 
-    <!-- الهيدر بتصميم زجاجي عصري مع الشعار المتحرك وزر تبديل الوضع -->
-    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-lg border-b border-slate-200 dark:border-slate-800/80 sticky top-0 z-50 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-3.5 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="w-14 h-14 rounded-2xl overflow-hidden bg-white flex items-center justify-center gold-border-anim transition duration-300 group-hover:scale-105 shadow-md">
-                    <img src="https://raw.githubusercontent.com/ehab-shehata/alpha-textile-careers/main/681617835_989491430202752_8103851497895617397_n.jpg" alt="Alpha Textile Logo" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h1 class="font-black text-xl text-slate-900 dark:text-white tracking-wide group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Alpha Textile</h1>
-                    <p class="text-xs text-blue-600 dark:text-blue-400 font-semibold">إدارة الموارد البشرية</p>
-                </div>
-            </div>
+  <section id="top" class="relative py-16 sm:py-20 px-4 text-center overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1.5px,transparent_1.5px)] [background-size:28px_28px]"></div>
+    <div class="max-w-4xl mx-auto relative z-10">
+      <div class="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 mx-auto mb-7 rounded-3xl overflow-hidden bg-white flex items-center justify-center gold-border-anim shadow-2xl"><img src="https://raw.githubusercontent.com/ehab-shehata/alpha-textile-careers/main/681617835_989491430202752_8103851497895617397_n.jpg" alt="شعار Alpha Textile" class="w-full h-full object-cover" onerror="this.style.display='none'"></div>
+      <span class="bg-blue-600/10 text-blue-700 dark:text-blue-300 text-xs font-bold px-4 py-2 rounded-full inline-block mb-6 border border-blue-600/20">المنطقة الحرة العامة — العامرية، الإسكندرية</span>
+      <h1 class="text-4xl md:text-7xl font-black mb-4 bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-900 dark:from-white dark:via-blue-200 dark:to-indigo-400 bg-clip-text text-transparent">Alpha Textile</h1>
+      <p class="text-blue-700 dark:text-blue-300 text-lg md:text-2xl font-bold mb-5">بوابة التوظيف المركزية</p>
+      <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg mb-9 max-w-2xl mx-auto leading-relaxed">انضم إلى فريقنا في تصنيع وتصدير الملابس الجاهزة. سجّل بياناتك واختر الوظيفة والفرع المناسبين.</p>
+      <div class="flex flex-wrap justify-center gap-3"><button type="button" data-open-modal class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold px-7 py-4 rounded-2xl shadow-xl transition hover:-translate-y-1">سجل بياناتك الآن</button><a href="#jobsSection" class="bg-white/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 font-bold px-6 py-4 rounded-2xl border border-slate-300 dark:border-slate-700 shadow-sm">تصفح الوظائف</a></div>
+    </div>
+  </section>
 
-            <div class="flex items-center gap-3">
-                <!-- زر تبديل الوضع (نهاري / ليلي) -->
-                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-amber-400 hover:scale-110 transition shadow-inner" title="تبديل الوضع النهاري / الليلي">
-                    <span id="themeIcon" class="text-lg">☀️</span>
-                </button>
+  <div class="max-w-5xl mx-auto px-4 w-full mb-10 relative z-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 bg-white/80 dark:bg-slate-800/70 backdrop-blur-xl border border-slate-200 dark:border-slate-700 p-5 sm:p-6 rounded-3xl shadow-xl text-center">
+      <div class="p-3"><p class="text-3xl font-black text-blue-600 dark:text-blue-400 mb-1">2</p><p class="text-xs text-slate-500 dark:text-slate-400">فرعان بالعامرية</p></div>
+      <div class="p-3"><p class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 mb-1">Gamateks</p><p class="text-xs text-slate-500 dark:text-slate-400">المجموعة الأم</p></div>
+      <div class="p-3"><p class="text-3xl font-black text-emerald-600 dark:text-emerald-400 mb-1">HR</p><p class="text-xs text-slate-500 dark:text-slate-400">إدارة الموارد البشرية</p></div>
+      <div class="p-3"><p class="text-3xl font-black text-indigo-600 dark:text-indigo-400 mb-1">تطوير</p><p class="text-xs text-slate-500 dark:text-slate-400">فرص تعلم ونمو</p></div>
+    </div>
+  </div>
 
-                <button onclick="openModal()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-5 py-2.5 rounded-xl text-sm shadow-lg shadow-blue-600/30 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105 active:scale-95">قدم طلب توظيف الآن</button>
-            </div>
+  <main class="max-w-5xl mx-auto px-4 py-4 w-full space-y-14">
+    <section id="jobsSection" class="bg-white/75 dark:bg-slate-800/45 backdrop-blur-xl rounded-3xl p-5 sm:p-9 shadow-xl border border-slate-200 dark:border-slate-700/60">
+      <div class="flex items-center justify-between mb-7 flex-wrap gap-3"><div><h2 class="text-2xl font-black text-slate-900 dark:text-white">الوظائف المعروضة للتقديم</h2><p class="text-xs text-blue-600 dark:text-blue-400 font-semibold mt-1">اضغط على الوظيفة لتعبئة المسمى تلقائيًا</p></div><span class="text-xs bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 px-3 py-2 rounded-xl">29 مسمى وظيفي</span></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-7">
+        <div class="md:col-span-2 pt-2 first:pt-0">
+          <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white border-r-4 border-blue-600 pr-3 mb-3">أولًا: وظائف الإنتاج والتشغيل</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button type="button" data-job="عمال سنجر" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">عمال سنجر</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإنتاج والتشغيل</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تشغيل ماكينات سنجر بخطوط الإنتاج.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="عمال أوفر" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">عمال أوفر</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإنتاج والتشغيل</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تشغيل ماكينات الأوفر.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="عمال أورليه" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">عمال أورليه</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإنتاج والتشغيل</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تشغيل ماكينات الأورليه.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="عمال جواكر ماكينات" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">عمال جواكر ماكينات</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإنتاج والتشغيل</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تشغيل ماكينات الجواكر.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="عمال مكواة" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">عمال مكواة</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإنتاج والتشغيل</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">كيّ وتجهيز قطع الملابس.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="مساعدين وتشطيب" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">مساعدين وتشطيب</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإنتاج والتشغيل</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">المساعدة في أعمال التشطيب وتجهيز المنتج.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="عمال تعبئة" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">عمال تعبئة</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإنتاج والتشغيل</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تعبئة وتجهيز المنتجات النهائية.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+          </div>
         </div>
-    </header>
-
-    <!-- القسم الرئيسي (Hero) -->
-    <section class="relative py-20 px-4 text-center overflow-hidden">
-        <div class="absolute inset-0 opacity-10 dark:opacity-15 bg-[radial-gradient(#3b82f6_1.5px,transparent_1.5px)] [background-size:28px_28px] animate-pulse"></div>
-        <div class="max-w-4xl mx-auto relative z-10">
-            <div class="w-28 h-28 mx-auto mb-6 rounded-3xl overflow-hidden bg-white flex items-center justify-center gold-border-anim shadow-2xl transition duration-500 hover:scale-110">
-                <img src="https://raw.githubusercontent.com/ehab-shehata/alpha-textile-careers/main/681617835_989491430202752_8103851497895617397_n.jpg" alt="Alpha Textile Logo" class="w-full h-full object-cover">
-            </div>
-
-            <span class="bg-blue-600/10 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold px-4 py-2 rounded-full inline-block mb-6 border border-blue-600/20 dark:border-blue-500/25 tracking-wider backdrop-blur-md shadow-sm">المنطقة الحرة العامة - العامرية، الإسكندرية</span>
-            
-            <h2 class="text-4xl md:text-7xl font-black mb-4 tracking-tight bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-900 dark:from-white dark:via-blue-200 dark:to-indigo-400 bg-clip-text text-transparent">
-                Alpha Textile
-            </h2>
-            
-            <p class="text-blue-700 dark:text-blue-300 text-lg md:text-2xl font-bold mb-6">بوابة التوظيف المركزية</p>
-            <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">انضم إلى صرح تصنيع وتصدير الملابس الجاهزة الرائد. نرحب بالكفاءات لصناعة مستقبل ناجح معنا.</p>
-            
-            <div class="flex flex-wrap justify-center gap-4">
-                <button onclick="openModal()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-8 py-4 rounded-2xl shadow-xl shadow-blue-600/40 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:scale-95 text-base">سجل بياناتك ووظيفتك المستهدفة</button>
-                <a href="#jobsSection" class="bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold px-6 py-4 rounded-2xl border border-slate-300 dark:border-slate-700 transition text-base shadow-sm">تصفح الوظائف المطلوبة</a>
-            </div>
+        <div class="md:col-span-2 pt-2 first:pt-0">
+          <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white border-r-4 border-blue-600 pr-3 mb-3">ثانيًا: وظائف الطباعة والتطريز</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button type="button" data-job="مساعدين طباعة" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">مساعدين طباعة</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الطباعة والتطريز</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">المساعدة في تنفيذ وتجهيز أعمال الطباعة.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="فنيين طباعة" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">فنيين طباعة</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الطباعة والتطريز</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تنفيذ أعمال الطباعة على الملابس.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="فنيين ألوان" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">فنيين ألوان</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الطباعة والتطريز</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تجهيز ومتابعة الألوان المستخدمة في الطباعة.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="فنيين تطريز" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">فنيين تطريز</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الطباعة والتطريز</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تنفيذ أعمال تطريز الملابس.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="فنيين ترنسفير (Transfer)" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">فنيين ترنسفير (Transfer)</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الطباعة والتطريز</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تنفيذ أعمال نقل الطباعة بالترنسفير.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+          </div>
         </div>
+        <div class="md:col-span-2 pt-2 first:pt-0">
+          <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white border-r-4 border-blue-600 pr-3 mb-3">ثالثًا: وظائف الجودة والفحص</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button type="button" data-job="مشرف جودة قص" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">مشرف جودة قص</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الجودة والفحص</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">متابعة جودة القص ومراجعة المخرجات.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="مهندس فحص نهائي" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">مهندس فحص نهائي</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الجودة والفحص</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">متابعة الفحص النهائي للمنتجات.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="مشرف فحص أقمشة" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">مشرف فحص أقمشة</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الجودة والفحص</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">الإشراف على فحص الأقمشة ومراجعة العيوب.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+          </div>
+        </div>
+        <div class="md:col-span-2 pt-2 first:pt-0">
+          <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white border-r-4 border-blue-600 pr-3 mb-3">رابعًا: وظائف التخطيط والباترون</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button type="button" data-job="منسق تخطيط" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">منسق تخطيط</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">التخطيط والباترون</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تنسيق بيانات ومتابعة خطط الإنتاج.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="أخصائي تخطيط" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">أخصائي تخطيط</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">التخطيط والباترون</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">إعداد ومتابعة خطط الإنتاج.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="مساعد باترون" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">مساعد باترون</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">التخطيط والباترون</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">مساعدة فريق الباترون في التجهيز والمتابعة.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="أخصائي باترون" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">أخصائي باترون</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">التخطيط والباترون</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">إعداد ومراجعة الباترونات.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+          </div>
+        </div>
+        <div class="md:col-span-2 pt-2 first:pt-0">
+          <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white border-r-4 border-blue-600 pr-3 mb-3">خامسًا: الوظائف الإدارية والمكتبية</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button type="button" data-job="ميرشندايزر (Merchandiser)" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">ميرشندايزر (Merchandiser)</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإدارة والمكاتب</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">متابعة متطلبات العملاء والطلبات والتنسيق الداخلي.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="أخصائي شؤون عاملين" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">أخصائي شؤون عاملين</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإدارة والمكاتب</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">متابعة إجراءات وملفات العاملين.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="مدخل بيانات (Data Entry)" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">مدخل بيانات (Data Entry)</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإدارة والمكاتب</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">إدخال البيانات ومراجعتها على الأنظمة.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="مترجم" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">مترجم</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإدارة والمكاتب</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">ترجمة المراسلات والمستندات حسب احتياج العمل.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="سكرتيرة" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">سكرتيرة</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الإدارة والمكاتب</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تنظيم الأعمال المكتبية والمواعيد والمراسلات.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+          </div>
+        </div>
+        <div class="md:col-span-2 pt-2 first:pt-0">
+          <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white border-r-4 border-blue-600 pr-3 mb-3">سادسًا: وظائف الصيانة وتكنولوجيا المعلومات</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button type="button" data-job="فنيين كهرباء" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">فنيين كهرباء</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الصيانة وتكنولوجيا المعلومات</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">تنفيذ أعمال الصيانة الكهربائية.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="مشرف صيانة عامة" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">مشرف صيانة عامة</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الصيانة وتكنولوجيا المعلومات</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">الإشراف على أعمال الصيانة العامة.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="أخصائي تكنولوجيا المعلومات (IT)" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">أخصائي تكنولوجيا المعلومات (IT)</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">الصيانة وتكنولوجيا المعلومات</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">دعم أنظمة وأجهزة تكنولوجيا المعلومات.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+          </div>
+        </div>
+        <div class="md:col-span-2 pt-2 first:pt-0">
+          <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white border-r-4 border-blue-600 pr-3 mb-3">سابعًا: وظائف المخازن</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button type="button" data-job="عمال مخازن قماش" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">عمال مخازن قماش</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">المخازن</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">مناولة وتنظيم واستلام وصرف الأقمشة.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+            <button type="button" data-job="عمال مخازن" class="job-card text-right bg-white dark:bg-slate-900/70 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <div class="flex justify-between items-start gap-2 mb-2"><h4 class="font-bold leading-relaxed">عمال مخازن</h4><span class="text-[11px] text-blue-600 dark:text-blue-400 whitespace-nowrap">المخازن</span></div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">المساعدة في أعمال الاستلام والتخزين والصرف.</p>
+              <span class="block mt-3 text-xs text-blue-600 dark:text-blue-400 font-bold">تقديم سريع ←</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-5 leading-relaxed">ملاحظة: الوظائف المعروضة مرتبطة باحتياجات التوظيف وقت النشر، وسيتم التواصل مع المرشحين المناسبين بعد مراجعة البيانات.</p>
     </section>
 
-    <!-- شريط الإحصائيات القوي -->
-    <div class="max-w-5xl mx-auto px-4 w-full -mt-6 mb-10 relative z-20">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white/80 dark:bg-slate-800/70 backdrop-blur-xl border border-slate-200 dark:border-slate-700/80 p-6 rounded-3xl shadow-2xl text-center">
-            <div class="p-3 border-l border-slate-200 dark:border-slate-700/50 last:border-none">
-                <p class="text-3xl font-black text-blue-600 dark:text-blue-400 mb-1">2+</p>
-                <p class="text-xs text-slate-500 dark:text-slate-400">فروع رئيسية بالعامرية</p>
-            </div>
-            <div class="p-3 border-l border-slate-200 dark:border-slate-700/50 last:border-none">
-                <p class="text-3xl font-black text-amber-600 dark:text-amber-400 mb-1">Gamateks</p>
-                <p class="text-xs text-slate-500 dark:text-slate-400">مجموعة عالمية رائدة</p>
-            </div>
-            <div class="p-3 border-l border-slate-200 dark:border-slate-700/50 last:border-none">
-                <p class="text-3xl font-black text-emerald-600 dark:text-emerald-400 mb-1">100%</p>
-                <p class="text-xs text-slate-500 dark:text-slate-400">التزام بقوانين العمل</p>
-            </div>
-            <div class="p-3">
-                <p class="text-3xl font-black text-indigo-600 dark:text-indigo-400 mb-1">دائم</p>
-                <p class="text-xs text-slate-500 dark:text-slate-400">فرص ترقي وتطوير</p>
-            </div>
-        </div>
+    <section class="bg-white/75 dark:bg-slate-800/45 backdrop-blur-xl rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200 dark:border-slate-700/60 float-hover">
+      <h2 class="text-2xl font-black mb-5">نبذة عن الشركة</h2>
+      <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6"><strong>Alpha Textile Co. (ألفا تكستايل)</strong> شركة متخصصة في تصنيع وتصدير الملابس الجاهزة، وتعمل تحت مظلة مجموعة Gamateks التركية.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50"><h3 class="font-bold text-blue-600 dark:text-blue-400 mb-2">الموقع والبنية</h3><p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">المنطقة الحرة العامة بالعامرية، الإسكندرية — بلوك 800 وبلوك 307.</p></div><div class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50"><h3 class="font-bold text-blue-600 dark:text-blue-400 mb-2">النشاط</h3><p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">تصنيع الملابس الجاهزة والتصدير للأسواق العالمية.</p></div></div>
+    </section>
+
+    <section>
+      <div class="text-center mb-7"><h2 class="text-2xl sm:text-3xl font-black mb-2">الفروع وطرق التواصل</h2><p class="text-slate-600 dark:text-slate-400 text-sm">اتصل بنا أو راسل الفرع مباشرة عبر واتساب</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <article class="bg-white/75 dark:bg-slate-800/45 rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 dark:border-slate-700/60 float-hover"><span class="text-xs font-bold text-blue-600 dark:text-blue-400">الفرع الرئيسي — ألفا 1</span><h3 class="text-xl font-black mt-3 mb-2">ألفا تكستايل 1</h3><p class="text-sm text-slate-600 dark:text-slate-300 mb-5">بلوك 800، المنطقة الحرة — العامرية، الإسكندرية</p><div class="flex items-center justify-between gap-3 border-t border-slate-200 dark:border-slate-700 pt-4"><a href="tel:01211167622" dir="ltr" class="text-blue-600 dark:text-blue-400 font-bold text-sm">01211167622</a><button type="button" data-copy="01211167622" class="text-xs px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-900">نسخ الرقم</button></div><a href="https://wa.me/201211167622" target="_blank" rel="noopener noreferrer" class="block text-center mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-3 rounded-xl text-sm">مراسلة واتساب ألفا 1</a></article>
+        <article class="bg-white/75 dark:bg-slate-800/45 rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 dark:border-slate-700/60 float-hover"><span class="text-xs font-bold text-blue-600 dark:text-blue-400">الفرع الثاني — ألفا 2</span><h3 class="text-xl font-black mt-3 mb-2">ألفا تكستايل 2</h3><p class="text-sm text-slate-600 dark:text-slate-300 mb-5">بلوك 307، المنطقة الحرة — العامرية، الإسكندرية</p><div class="flex items-center justify-between gap-3 border-t border-slate-200 dark:border-slate-700 pt-4"><a href="tel:01207109297" dir="ltr" class="text-blue-600 dark:text-blue-400 font-bold text-sm">01207109297</a><button type="button" data-copy="01207109297" class="text-xs px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-900">نسخ الرقم</button></div><a href="https://wa.me/201207109297" target="_blank" rel="noopener noreferrer" class="block text-center mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-3 rounded-xl text-sm">مراسلة واتساب ألفا 2</a></article>
+      </div>
+    </section>
+
+    <section class="bg-white/75 dark:bg-slate-800/45 rounded-3xl p-5 sm:p-6 shadow-xl border border-slate-200 dark:border-slate-700/60"><h2 class="text-xl font-black mb-2">موقعنا على خريطة جوجل</h2><p class="text-slate-500 dark:text-slate-400 text-xs mb-5">Alpha Textile Gamateks — الإسكندرية</p><div class="w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700"><iframe title="خريطة موقع Alpha Textile" src="https://www.google.com/maps?q=Alpha%20Textile%20Gamateks%20Alexandria&output=embed" width="100%" height="100%" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></section>
+  </main>
+
+  <div id="applicationModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4 z-50" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl max-w-xl w-full p-5 sm:p-8 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+      <button type="button" id="closeModal" class="absolute left-5 top-4 text-slate-500 hover:text-slate-900 dark:hover:text-white text-2xl" aria-label="إغلاق النافذة">×</button>
+      <div class="mb-6 pl-8"><span class="text-xs text-blue-600 dark:text-blue-400 font-bold bg-blue-500/10 border border-blue-500/25 px-3 py-1.5 rounded-lg">Alpha Textile — طلب توظيف</span><h2 id="modalTitle" class="text-2xl font-black mt-3">استمارة التقديم</h2><p class="text-xs text-slate-500 dark:text-slate-400 mt-1">أدخل بياناتك بدقة. الحقول التي تحمل علامة * إلزامية.</p></div>
+      <form id="jobForm" action="https://formspree.io/f/xbglgdge" method="POST" class="space-y-4">
+        <input type="hidden" name="_subject" id="formSubject" value="طلب توظيف جديد — Alpha Textile">
+        <input type="hidden" name="branch_email" id="branchEmailField" value="inhab.shehata@gamateks.com.tr">
+        <input type="hidden" name="source" value="بوابة التوظيف المركزية — Alpha Textile">
+        <div><label for="branchSelect" class="block text-xs font-bold mb-1.5">الفرع المستهدف *</label><select id="branchSelect" name="branch" required class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-3 text-sm"><option value="alpha1">ألفا 1 — بلوك 800</option><option value="alpha2">ألفا 2 — بلوك 307</option></select></div>
+        <div><label for="targetJobInput" class="block text-xs font-bold mb-1.5" data-ar="المسمى الوظيفي المستهدف *" data-en="Desired Job Position *">المسمى الوظيفي المستهدف *</label><select id="targetJobInput" name="target_job" required class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-3 text-sm"><option value="" disabled selected data-ar="اختر الوظيفة من القائمة" data-en="Select a job from the list">اختر الوظيفة من القائمة</option></select></div>
+        <div><label for="fullName" class="block text-xs font-bold mb-1.5">الاسم الكامل *</label><input id="fullName" type="text" name="full_name" required autocomplete="name" maxlength="150" placeholder="اكتب اسمك بالكامل" class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-3 text-sm"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><div><label for="phone" class="block text-xs font-bold mb-1.5">رقم الهاتف / واتساب *</label><input id="phone" type="tel" name="phone" required autocomplete="tel" inputmode="tel" maxlength="25" pattern="[0-9+() .-]{8,25}" placeholder="01xxxxxxxxx" class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-3 text-sm"></div><div><label for="email" class="block text-xs font-bold mb-1.5">البريد الإلكتروني *</label><input id="email" type="email" name="email" required autocomplete="email" maxlength="254" placeholder="name@example.com" class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-3 text-sm"></div></div>
+        <div><label for="experience" class="block text-xs font-bold mb-1.5">سنوات الخبرة *</label><select id="experience" name="experience" required class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-3 text-sm"><option value="أقل من سنة">أقل من سنة / حديث التخرج</option><option value="1-3 سنوات">من سنة إلى 3 سنوات</option><option value="3-5 سنوات">من 3 إلى 5 سنوات</option><option value="أكثر من 5 سنوات">أكثر من 5 سنوات</option></select></div>
+        <div><label for="bio" class="block text-xs font-bold mb-1.5">نبذة عن الخبرة أو رابط السيرة الذاتية *</label><textarea id="bio" name="bio" rows="4" required maxlength="3000" placeholder="اكتب نبذة مختصرة عن خبرتك أو ضع رابط السيرة الذاتية" class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-3 text-sm resize-y"></textarea></div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">بإرسال النموذج، فإنك توافق على استخدام البيانات المقدمة لغرض مراجعة طلب التوظيف والتواصل معك بشأنه.</p>
+        <div id="formError" class="hidden text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900 rounded-xl p-3" role="alert"></div>
+        <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-xl shadow-lg transition">إرسال طلب التوظيف</button>
+      </form>
+      <div id="successMessage" class="hidden text-center py-8" role="status"><div class="w-16 h-16 bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded-full flex items-center justify-center mx-auto text-2xl font-bold mb-4">✓</div><h3 class="text-2xl font-black mb-2">تم قبول الطلب للإرسال</h3><p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">استلمت خدمة النماذج طلبك بنجاح. سيتم التعامل معه وفق إعدادات استقبال الطلبات المعتمدة.</p><button type="button" id="successClose" class="bg-slate-100 dark:bg-slate-800 px-8 py-3 rounded-xl border border-slate-300 dark:border-slate-700">إغلاق</button></div>
     </div>
+  </div>
 
-    <!-- المحتوى الرئيسي -->
-    <main class="max-w-4xl mx-auto px-4 py-6 w-full space-y-16">
-        
-        <!-- قسم الوظائف الشاغرة -->
-        <div id="jobsSection" class="bg-white/70 dark:bg-slate-800/40 backdrop-blur-xl rounded-3xl p-8 md:p-10 shadow-xl border border-slate-200 dark:border-slate-700/60 text-right">
-            <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-amber-500/10 text-amber-500 dark:text-amber-400 rounded-2xl flex items-center justify-center text-xl font-black border border-amber-500/20 shadow-inner">⚡</div>
-                    <div>
-                        <h3 class="text-2xl font-black text-slate-900 dark:text-white">الوظائف المتاحة حالياً</h3>
-                        <p class="text-xs text-amber-600 dark:text-amber-400 font-semibold">انقر على الوظيفة لتقديم طلبك فوراً</p>
-                    </div>
-                </div>
-                <span class="text-xs bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 px-3 py-1.5 rounded-xl">فرص تعيين فورية</span>
-            </div>
+  <div id="toast" class="fixed bottom-5 right-5 bg-emerald-600 text-white px-5 py-3 rounded-xl shadow-2xl z-[60] translate-y-20 opacity-0 pointer-events-none text-sm font-bold" role="status" aria-live="polite">تم نسخ الرقم بنجاح</div>
+  <footer class="bg-white/90 dark:bg-slate-900/90 border-t border-slate-200 dark:border-slate-800 py-7 px-4 text-center text-xs text-slate-600 dark:text-slate-400 mt-16 space-y-3"><p>Alpha Textile © <span id="year">2026</span> — إدارة الموارد البشرية</p><p>إشراف وتطوير المنظومة: <a href="https://www.linkedin.com/in/ehab-shehata/" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 font-bold hover:underline">Ehab Shehata — LinkedIn</a></p></footer>
 
-            <!-- شبكة الوظائف -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                <div onclick="selectJobAndOpen('عمال جودة (ترابيزة وخطوط)')" class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 cursor-pointer transition hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-slate-900 group shadow-sm">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">عمال جودة (ترابيزة وخطوط)</h4>
-                        <span class="text-xs bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-lg">قسم الجودة</span>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">مطلوب عمال ومراقبين جودة للعمل على ترابيزات الفحص وداخل خطوط الإنتاج.</p>
-                    <span class="text-xs text-blue-600 dark:text-blue-400 font-bold flex items-center gap-1">تقديم سريع ←</span>
-                </div>
+  <script>
+    'use strict';
+    const $ = (selector) => document.querySelector(selector);
+    const translations = {
+      'باب التقديم متاح للوظائف المعروضة في فرعي العامرية — بلوك 800 وبلوك 307.':'Applications are open for the listed vacancies at our Amreya branches — Block 800 and Block 307.',
+      'توظيف':'CAREERS','إدارة الموارد البشرية':'Human Resources','— إدارة الموارد البشرية':'— Human Resources','تطوير':'Growth','قدم طلب توظيف':'Apply for a Job',
+      'بوابة التوظيف المركزية':'Central Recruitment Portal','المنطقة الحرة العامة — العامرية، الإسكندرية':'Public Free Zone — Amreya, Alexandria',
+      'انضم إلى فريقنا في تصنيع وتصدير الملابس الجاهزة. سجّل بياناتك واختر الوظيفة والفرع المناسبين.':'Join our ready-made garments manufacturing and export team. Enter your details and choose your preferred job and branch.',
+      'سجل بياناتك الآن':'Apply Now','تصفح الوظائف':'Browse Jobs','فرعان بالعامرية':'Two branches in Amreya','المجموعة الأم':'Parent Group','فرص تعلم ونمو':'Learning & Growth Opportunities',
+      'الوظائف المعروضة للتقديم':'Current Job Openings','اضغط على الوظيفة لتعبئة المسمى تلقائيًا':'Select a job to prefill it in the application form','29 مسمى وظيفي':'29 Job Titles',
+      'أولًا: وظائف الإنتاج والتشغيل':'1. Production & Operations','ثانيًا: وظائف الطباعة والتطريز':'2. Printing & Embroidery','ثالثًا: وظائف الجودة والفحص':'3. Quality & Inspection',
+      'رابعًا: وظائف التخطيط والباترون':'4. Planning & Pattern Making','خامسًا: الوظائف الإدارية والمكتبية':'5. Administration & Office Roles','سادسًا: وظائف الصيانة وتكنولوجيا المعلومات':'6. Maintenance & IT','سابعًا: وظائف المخازن':'7. Warehouse Roles',
+      'الإنتاج والتشغيل':'Production & Operations','الطباعة والتطريز':'Printing & Embroidery','الجودة والفحص':'Quality & Inspection','التخطيط والباترون':'Planning & Pattern Making','الإدارة والمكاتب':'Administration & Office','الصيانة وتكنولوجيا المعلومات':'Maintenance & IT','المخازن':'Warehousing',
+      'عمال سنجر':'Lockstitch Sewing Machine Operators','تشغيل ماكينات سنجر بخطوط الإنتاج.':'Operate lockstitch sewing machines on production lines.',
+      'عمال أوفر':'Overlock Machine Operators','تشغيل ماكينات الأوفر.':'Operate overlock sewing machines.','عمال أورليه':'Orlaya / Hemming Machine Operators','تشغيل ماكينات الأورليه.':'Operate hemming machines.',
+      'عمال جواكر ماكينات':'Specialty Sewing Machine Operators','عمال مكواة':'Ironing Operators','مساعدين وتشطيب':'Helpers & Finishing Workers','عمال تعبئة':'Packing Workers',
+      'مساعدين طباعة':'Printing Assistants','فنيين طباعة':'Printing Technicians','فنيين ألوان':'Color Technicians','فنيين تطريز':'Embroidery Technicians','فنيين ترنسفير (Transfer)':'Transfer Technicians',
+      'مشرف جودة قص':'Cutting Quality Supervisor','مهندس فحص نهائي':'Final Inspection Engineer','مشرف فحص أقمشة':'Fabric Inspection Supervisor','منسق تخطيط':'Planning Coordinator','أخصائي تخطيط':'Planning Specialist','مساعد باترون':'Pattern Assistant','أخصائي باترون':'Pattern Specialist',
+      'ميرشندايزر (Merchandiser)':'Merchandiser','أخصائي شؤون عاملين':'Personnel Affairs Specialist','مدخل بيانات (Data Entry)':'Data Entry Clerk','مترجم':'Translator','سكرتيرة':'Secretary','فنيين كهرباء':'Electrical Technicians','مشرف صيانة عامة':'General Maintenance Supervisor','أخصائي تكنولوجيا المعلومات (IT)':'IT Specialist','عمال مخازن قماش':'Fabric Warehouse Workers','عمال مخازن':'Warehouse Workers',
+      'تنفيذ أعمال الصيانة الكهربائية.':'Perform electrical maintenance tasks.','الإشراف على أعمال الصيانة العامة.':'Supervise general maintenance activities.','دعم أنظمة وأجهزة تكنولوجيا المعلومات.':'Support IT systems and equipment.','مناولة وتنظيم واستلام وصرف الأقمشة.':'Handle, organize, receive, and issue fabrics.',
+      'تقديم سريع ←':'Quick Apply →','الفروع وطرق التواصل':'Branches & Contact Information','اتصل بنا أو راسل الفرع مباشرة عبر واتساب':'Call us or contact the branch directly on WhatsApp',
+      'الفرع الرئيسي — ألفا 1':'Main Branch — Alpha 1','الفرع الثاني — ألفا 2':'Second Branch — Alpha 2','ألفا تكستايل 1':'Alpha Textile 1','ألفا تكستايل 2':'Alpha Textile 2','بلوك 800، المنطقة الحرة — العامرية، الإسكندرية':'Block 800, Free Zone — Amreya, Alexandria','بلوك 307، المنطقة الحرة — العامرية، الإسكندرية':'Block 307, Free Zone — Amreya, Alexandria',
+      'نسخ الرقم':'Copy Number','مراسلة واتساب ألفا 1':'Message Alpha 1 on WhatsApp','مراسلة واتساب ألفا 2':'Message Alpha 2 on WhatsApp','موقعنا على خريطة جوجل':'Find Us on Google Maps','Alpha Textile Gamateks — الإسكندرية':'Alpha Textile Gamateks — Alexandria',
+      'Alpha Textile — طلب توظيف':'Alpha Textile — Job Application','استمارة التقديم':'Application Form','أدخل بياناتك بدقة. الحقول التي تحمل علامة * إلزامية.':'Please enter your details accurately. Fields marked * are required.','الفرع المستهدف *':'Preferred Branch *','ألفا 1 — بلوك 800':'Alpha 1 — Block 800','ألفا 2 — بلوك 307':'Alpha 2 — Block 307',
+      'الاسم الكامل *':'Full Name *','رقم الهاتف / واتساب *':'Phone / WhatsApp Number *','البريد الإلكتروني *':'Email Address *','سنوات الخبرة *':'Years of Experience *','أقل من سنة / حديث التخرج':'Less than 1 year / Fresh Graduate','من سنة إلى 3 سنوات':'1–3 years','من 3 إلى 5 سنوات':'3–5 years','أكثر من 5 سنوات':'More than 5 years',
+      'نبذة عن الخبرة أو رابط السيرة الذاتية *':'Experience Summary or CV Link *','بإرسال النموذج، فإنك توافق على استخدام البيانات المقدمة لغرض مراجعة طلب التوظيف والتواصل معك بشأنه.':'By submitting this form, you agree that the information provided may be used to review your application and contact you about it.',
+      'إرسال طلب التوظيف':'Submit Application','تم قبول الطلب للإرسال':'Application Accepted for Submission','استلمت خدمة النماذج طلبك بنجاح. سيتم التعامل معه وفق إعدادات استقبال الطلبات المعتمدة.':'The form service received your submission. It will be handled according to the configured application-receiving settings.','إغلاق':'Close',
+      'تم نسخ الرقم بنجاح':'Number copied successfully','إشراف وتطوير المنظومة:':'Portal maintained and developed by:','التبديل إلى الوضع النهاري':'Switch to light mode','التبديل إلى الوضع الليلي':'Switch to dark mode',
+      'الاسم الكامل':'Full Name','اكتب اسمك بالكامل':'Enter your full name','مثال: عمال ماكينات، مشرف إنتاج':'e.g. Sewing Machine Operator, Production Supervisor','اكتب نبذة مختصرة عن خبرتك أو ضع رابط السيرة الذاتية':'Briefly describe your experience or paste your CV link',
+      'تم إرسال الطلب بنجاح':'Application Submitted Successfully','قبلت خدمة استقبال النماذج طلبك. هذا التأكيد لا يعني أن الطلب وُجّه إلى بريد الفرع المختار إلا إذا كان التوجيه مُعدًا داخل الخدمة.':'The form service accepted your submission. This does not mean it was forwarded to the selected branch email unless routing is configured in the service.',
+      'تشغيل ماكينات الجواكر.':'Operate specialty sewing machines.','كيّ وتجهيز قطع الملابس.':'Iron and prepare garment pieces.','المساعدة في أعمال التشطيب وتجهيز المنتج.':'Assist with garment finishing and product preparation.','تعبئة وتجهيز المنتجات النهائية.':'Pack and prepare finished products.','المساعدة في تنفيذ وتجهيز أعمال الطباعة.':'Assist with printing preparation and execution.','تنفيذ أعمال الطباعة على الملابس.':'Print designs on garments.','تجهيز ومتابعة الألوان المستخدمة في الطباعة.':'Prepare and monitor colors used in printing.','تنفيذ أعمال تطريز الملابس.':'Perform garment embroidery.','تنفيذ أعمال نقل الطباعة بالترنسفير.':'Perform transfer printing.','متابعة جودة القص ومراجعة المخرجات.':'Monitor cutting quality and review output.','متابعة الفحص النهائي للمنتجات.':'Monitor final product inspection.','الإشراف على فحص الأقمشة ومراجعة العيوب.':'Supervise fabric inspection and review defects.','تنسيق بيانات ومتابعة خطط الإنتاج.':'Coordinate data and track production plans.','المساعدة في أعمال الاستلام والتخزين والصرف.':'Assist with receiving, storage, and issuing activities.','ملاحظة: الوظائف المعروضة مرتبطة باحتياجات التوظيف وقت النشر، وسيتم التواصل مع المرشحين المناسبين بعد مراجعة البيانات.':'Note: Listed vacancies reflect hiring needs at the time of publication. Suitable candidates will be contacted after their information is reviewed.','نبذة عن الشركة':'About the Company','Alpha Textile Co. (ألفا تكستايل)':'Alpha Textile Co.','شركة متخصصة في تصنيع وتصدير الملابس الجاهزة، وتعمل تحت مظلة مجموعة Gamateks التركية.':'A ready-made garments manufacturer and exporter operating under the Turkish Gamateks Group.','الموقع والبنية':'Location & Facilities','المنطقة الحرة العامة بالعامرية، الإسكندرية — بلوك 800 وبلوك 307.':'Public Free Zone, Amreya, Alexandria — Block 800 and Block 307.','النشاط':'Our Business','تصنيع الملابس الجاهزة والتصدير للأسواق العالمية.':'Garment manufacturing and exports to global markets.',
+      'تشغيل ماكينات الجواكر حسب متطلبات الإنتاج.':'Operate specialty sewing machines as required by production.',
+      'تشغيل المكواة وتجهيز القطع وفق معايير الجودة.':'Iron and prepare garments according to quality standards.','المساعدة في مراحل التشغيل والتشطيب.':'Assist with production operations and garment finishing.','تعبئة وتجهيز المنتجات للشحن.':'Pack and prepare products for shipment.','المساعدة في تجهيز أعمال الطباعة.':'Assist with printing preparation.','تشغيل ومتابعة معدات الطباعة.':'Operate and monitor printing equipment.','تجهيز ومطابقة الألوان المستخدمة في الطباعة.':'Prepare and match colors used in printing.','تشغيل ومتابعة ماكينات التطريز.':'Operate and monitor embroidery machines.','تنفيذ ومتابعة عمليات الطباعة الحرارية Transfer.':'Perform and monitor transfer printing processes.','متابعة جودة القص ومراجعة القطع.':'Monitor cutting quality and inspect cut panels.','فحص المنتج النهائي وفق معايير الجودة.':'Inspect finished garments against quality standards.','فحص الأقمشة واكتشاف العيوب.':'Inspect fabrics and identify defects.','تنسيق خطط الإنتاج ومتابعة التنفيذ.':'Coordinate production plans and track execution.','إعداد ومتابعة خطط الإنتاج.':'Prepare and monitor production plans.','مساعدة فريق الباترون في التجهيز والمتابعة.':'Assist the pattern team with preparation and follow-up.','إعداد ومراجعة الباترونات.':'Prepare and review patterns.','متابعة متطلبات العملاء والطلبات والتنسيق الداخلي.':'Follow up on customer requirements, orders, and internal coordination.','متابعة إجراءات وملفات العاملين.':'Maintain employee files and personnel procedures.','إدخال البيانات ومراجعتها على الأنظمة.':'Enter and verify data in company systems.','ترجمة المراسلات والمستندات حسب احتياج العمل.':'Translate correspondence and documents as needed.','تنظيم الأعمال المكتبية والمواعيد والمراسلات.':'Organize office tasks, appointments, and correspondence.','لم يتم إرسال الطلب. تحقق من إعدادات Formspree وحاول مرة أخرى.':'The application was not sent. Check your Formspree settings and try again.','تعذر الاتصال بخدمة الإرسال. تحقق من اتصال الإنترنت وحاول مرة أخرى.':'Could not connect to the submission service. Check your internet connection and try again.','جارٍ إرسال الطلب...':'Submitting application...','تعذر النسخ تلقائيًا؛ يرجى نسخ الرقم يدويًا.':'Could not copy automatically; please copy the number manually.','نسخ الرقم':'Copy Number'
+    };
+    const englishJobs = {
+      'عمال سنجر':'Lockstitch Sewing Machine Operators','عمال أوفر':'Overlock Machine Operators','عمال أورليه':'Orlaya / Hemming Machine Operators','عمال جواكر ماكينات':'Specialty Sewing Machine Operators','عمال مكواة':'Ironing Operators','مساعدين وتشطيب':'Helpers & Finishing Workers','عمال تعبئة':'Packing Workers','مساعدين طباعة':'Printing Assistants','فنيين طباعة':'Printing Technicians','فنيين ألوان':'Color Technicians','فنيين تطريز':'Embroidery Technicians','فنيين ترنسفير (Transfer)':'Transfer Technicians','مشرف جودة قص':'Cutting Quality Supervisor','مهندس فحص نهائي':'Final Inspection Engineer','مشرف فحص أقمشة':'Fabric Inspection Supervisor','منسق تخطيط':'Planning Coordinator','أخصائي تخطيط':'Planning Specialist','مساعد باترون':'Pattern Assistant','أخصائي باترون':'Pattern Specialist','ميرشندايزر (Merchandiser)':'Merchandiser','أخصائي شؤون عاملين':'Personnel Affairs Specialist','مدخل بيانات (Data Entry)':'Data Entry Clerk','مترجم':'Translator','سكرتيرة':'Secretary','فنيين كهرباء':'Electrical Technicians','مشرف صيانة عامة':'General Maintenance Supervisor','أخصائي تكنولوجيا المعلومات (IT)':'IT Specialist','عمال مخازن قماش':'Fabric Warehouse Workers','عمال مخازن':'Warehouse Workers'
+    };
+    const categoryEnglish = {'أولًا: وظائف الإنتاج والتشغيل':'1. Production & Operations','ثانيًا: وظائف الطباعة والتطريز':'2. Printing & Embroidery','ثالثًا: وظائف الجودة والفحص':'3. Quality & Inspection','رابعًا: وظائف التخطيط والباترون':'4. Planning & Pattern Making','خامسًا: الوظائف الإدارية والمكتبية':'5. Administration & Office Roles','سادسًا: وظائف الصيانة وتكنولوجيا المعلومات':'6. Maintenance & IT','سابعًا: وظائف المخازن':'7. Warehouse Roles'};
+    let currentLanguage = 'ar';
+    const originalText = new WeakMap();
+    const reverseTranslations = new Map(
+      Object.entries({ ...translations, ...categoryEnglish, ...englishJobs }).map(([ar, en]) => [en, ar])
+    );
+    function translatePage(lang) {
+      currentLanguage = lang;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.title = lang === 'ar' ? 'Alpha Textile | بوابة التوظيف المركزية' : 'Alpha Textile | Central Recruitment Portal';
+      $('#languageToggle').textContent = lang === 'ar' ? 'EN' : 'عربي';
+      $('#languageToggle').setAttribute('aria-label', lang === 'ar' ? 'التبديل إلى الإنجليزية' : 'Switch to Arabic');
 
-                <div onclick="selectJobAndOpen('عمال ماكينات (جوكر - سنجر - أوفر - أورلية)')" class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 cursor-pointer transition hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-slate-900 group shadow-sm">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">عمال ماكينات (جوكر، سنجر، أوفر، أورلية)</h4>
-                        <span class="text-xs bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-lg">قسم الخياطة</span>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">خبرة في تشغيل ماكينات الخياطة الصناعية المختلفة (سنجر، أوفر، أورلية، وجوكر).</p>
-                    <span class="text-xs text-blue-600 dark:text-blue-400 font-bold flex items-center gap-1">تقديم سريع ←</span>
-                </div>
-
-                <div onclick="selectJobAndOpen('مشرفين إنتاج')" class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 cursor-pointer transition hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-slate-900 group shadow-sm">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">مشرفين إنتاج</h4>
-                        <span class="text-xs bg-slate-100 dark:bg-slate-800 text-amber-600 dark:text-amber-400 px-2.5 py-1 rounded-lg">إشراف وإدارة</span>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">مطلوب مشرفي خطوط إنتاج بخبرة سابقة في مصانع الملابس الجاهزة وإدارة العمال.</p>
-                    <span class="text-xs text-blue-600 dark:text-blue-400 font-bold flex items-center gap-1">تقديم سريع ←</span>
-                </div>
-
-                <div onclick="selectJobAndOpen('عمال صيانة عامة / ماكينات')" class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 cursor-pointer transition hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-slate-900 group shadow-sm">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">عمال صيانة عامة / ماكينات</h4>
-                        <span class="text-xs bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-lg">قسم الصيانة</span>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">صيانة إصلاح ماكينات الحياكة ومعدات المصنع والصيانة العامة.</p>
-                    <span class="text-xs text-blue-600 dark:text-blue-400 font-bold flex items-center gap-1">تقديم سريع ←</span>
-                </div>
-
-                <div onclick="selectJobAndOpen('مدخلين بيانات')" class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 cursor-pointer transition hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-slate-900 group shadow-sm">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">مدخلين بيانات</h4>
-                        <span class="text-xs bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-lg">إداري</span>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">إجادة استخدام الحاسب الآلي وبرامج الإكسل لإدخال ومراجعة بيانات الإنتاج والحضور.</p>
-                    <span class="text-xs text-blue-600 dark:text-blue-400 font-bold flex items-center gap-1">تقديم سريع ←</span>
-                </div>
-
-                <div onclick="selectJobAndOpen('عمال تطريز')" class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 cursor-pointer transition hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-slate-900 group shadow-sm">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">عمال تطريز</h4>
-                        <span class="text-xs bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-lg">قسم التطريز</span>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">خبرة في العمل على ماكينات ومعدات التطريز الخاصة بالملابس.</p>
-                    <span class="text-xs text-blue-600 dark:text-blue-400 font-bold flex items-center gap-1">تقديم سريع ←</span>
-                </div>
-
-                <div onclick="selectJobAndOpen('عمال تعبئة')" class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 cursor-pointer transition hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-slate-900 group md:col-span-2 shadow-sm">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">عمال تعبئة وتغليف</h4>
-                        <span class="text-xs bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-lg">التعبئة والتغليف</span>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">مطلوب عمال لتعبئة وتغليف المنتجات النهائية طبقاً لمعايير الجودة والتصدير.</p>
-                    <span class="text-xs text-blue-600 dark:text-blue-400 font-bold flex items-center gap-1">تقديم سريع ←</span>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- الملف التعريفي المختصر للشركة -->
-        <div class="bg-white/70 dark:bg-slate-800/40 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-xl border border-slate-200 dark:border-slate-700/60 text-right float-hover">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-12 h-12 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center text-xl font-black border border-blue-500/20 shadow-inner">🏢</div>
-                <div>
-                    <h3 class="text-2xl font-black text-slate-900 dark:text-white">الملف التعريفي للشركة</h3>
-                    <p class="text-xs text-blue-600 dark:text-blue-400 font-semibold">Alpha Textile Co. Profile</p>
-                </div>
-            </div>
-
-            <p class="text-slate-700 dark:text-slate-300 text-base leading-relaxed mb-8">
-                <strong>Alpha Textile Co. (ألفا تكستايل)</strong> شركة متخصصة في تصنيع وتصدير الملابس الجاهزة، وتعمل تحت مظلة مجموعة Gamateks التركية.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                <div class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/40 transition hover:border-blue-500/50 shadow-sm">
-                    <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">📍 الموقع والبنية</h4>
-                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">المنطقة الحرة العامة بالعامرية، الإسكندرية – بلوك 800، مع توسعات ببلوك 307.</p>
-                </div>
-
-                <div class="bg-white dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/40 transition hover:border-blue-500/50 shadow-sm">
-                    <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">⚙️ النشاط والقدرات</h4>
-                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">تصنيع الملابس الجاهزة والمنسوجات والتصدير للأسواق العالمية وفق معايير العلامات التجارية الكبرى.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- قسم فروع الشركة ووسائل التواصل المباشرة واتساب -->
-        <div class="text-right">
-            <div class="text-center mb-10">
-                <h3 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-2">فروعنا وطرق التواصل</h3>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">تواصل معنا مباشرة عبر مكالمات الهاتف أو مراسلة الواتساب</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- فرع 1 -->
-                <div class="bg-white/70 dark:bg-slate-800/40 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-slate-200 dark:border-slate-700/60 flex flex-col justify-between float-hover hover:border-emerald-500/40">
-                    <div>
-                        <span class="bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold px-3 py-1.5 rounded-lg border border-blue-500/20">الفرع الرئيسي (ألفا 1)</span>
-                        <h4 class="text-xl font-black text-slate-900 dark:text-white mt-4 mb-2">ألفا تكستايل 1</h4>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">بلوك 800، المنطقة الحرة - العامرية، الإسكندرية</p>
-                    </div>
-                    <div class="border-t border-slate-200 dark:border-slate-700/60 pt-4 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold">رقم الهاتف</span>
-                            <a href="tel:01211167622" dir="ltr" class="text-blue-600 dark:text-blue-400 font-bold hover:underline text-sm">01211167622</a>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <button onclick="copyToClipboard('01211167622')" class="text-xs bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl transition">📋 نسخ الرقم</button>
-                            <a href="https://wa.me/201211167622" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-600/30 transition">
-                                💬 مراسلة واتساب ألفا 1
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- فرع 2 -->
-                <div class="bg-white/70 dark:bg-slate-800/40 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-slate-200 dark:border-slate-700/60 flex flex-col justify-between float-hover hover:border-emerald-500/40">
-                    <div>
-                        <span class="bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold px-3 py-1.5 rounded-lg border border-blue-500/20">الفرع الثاني (ألفا 2)</span>
-                        <h4 class="text-xl font-black text-slate-900 dark:text-white mt-4 mb-2">ألفا تكستايل 2</h4>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">بلوك 307، المنطقة الحرة - العامرية، الإسكندرية</p>
-                    </div>
-                    <div class="border-t border-slate-200 dark:border-slate-700/60 pt-4 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold">رقم الهاتف</span>
-                            <a href="tel:01207109297" dir="ltr" class="text-blue-600 dark:text-blue-400 font-bold hover:underline text-sm">01207109297</a>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <button onclick="copyToClipboard('01207109297')" class="text-xs bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl transition">📋 نسخ الرقم</button>
-                            <a href="https://wa.me/201207109297" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-600/30 transition">
-                                💬 مراسلة واتساب ألفا 2
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- خريطة جوجل -->
-        <div class="bg-white/70 dark:bg-slate-800/40 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-slate-200 dark:border-slate-700/60 overflow-hidden text-right float-hover">
-            <h4 class="text-xl font-black text-slate-900 dark:text-white mb-2 px-2">موقعنا الجغرافي على خريطة جوجل</h4>
-            <p class="text-slate-500 dark:text-slate-400 text-xs mb-6 px-2">Alpha Textile Gamateks — الإسكندرية</p>
-            <div class="w-full h-96 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/60 shadow-inner">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.5!2d29.77!3d31.02!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5ec98341255e5%3A0x305e75955183362d!2sAlpha%20Textile%20Gamateks!5e0!3m2!1sen!2seg!4v1680000000000!5m2!1sen!2seg" 
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                </iframe>
-            </div>
-        </div>
-    </main>
-
-    <!-- نافذة استمارة التقديم (Modal) -->
-    <div id="applicationModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 z-50 transition-all duration-300">
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-3xl max-w-lg w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100">
-            <button onclick="closeModal()" class="absolute left-6 top-6 text-slate-400 hover:text-slate-900 dark:hover:text-white font-black text-xl transition-transform hover:rotate-90 duration-300">✕</button>
-            
-            <div class="mb-6">
-                <span class="text-xs text-blue-600 dark:text-blue-400 font-bold bg-blue-500/10 border border-blue-500/25 px-3 py-1.5 rounded-lg">Alpha Textile — طلب توظيف</span>
-                <h3 class="text-2xl font-black text-slate-900 dark:text-white mt-3">استمارة التقديم</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">اختر الفرع المستهدف لتوجيه طلبك إلى الإيميل المختص مباشرة.</p>
-            </div>
-
-            <!-- الفورم -->
-            <form id="jobForm" action="https://formspree.io/f/xbglgdge" method="POST" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">اختر الفرع المستهدف *</label>
-                    <select id="branchSelect" name="branch" required class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-amber-400 transition">
-                        <option value="alpha1" class="bg-white dark:bg-slate-900">ألفا 1 (بلوك 800) — inhab.shehata@gamateks.com.tr</option>
-                        <option value="alpha2" class="bg-white dark:bg-slate-900">ألفا 2 (بلوك 307) — alphahr.eg@gamateks.com.tr</option>
-                    </select>
-                    <input type="hidden" id="recipientEmail" name="_replyto" value="inhab.shehata@gamateks.com.tr">
-                    <input type="hidden" name="_subject" id="formSubject" value="طلب توظيف جديد - ألفا 1">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">المسمى الوظيفي المستهدف *</label>
-                    <input type="text" id="targetJobInput" required name="target_job" placeholder="مثال: عمال ماكينات جوكر، مشرفين إنتاج..." class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-blue-500 transition">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">الاسم الكامل *</label>
-                    <input type="text" required name="full_name" placeholder="اكتب اسمك الثلاثي" class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-blue-500 transition">
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">رقم الهاتف (واتساب) *</label>
-                        <input type="tel" required name="phone" placeholder="010xxxxxxxx" class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-blue-500 transition">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">البريد الإلكتروني *</label>
-                        <input type="email" required name="email" placeholder="name@example.com" class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-blue-500 transition">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">سنوات الخبرة *</label>
-                    <select name="experience" class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-blue-500 transition">
-                        <option value="حديث التخرج" class="bg-white dark:bg-slate-900">حديث التخرج (أقل من سنة)</option>
-                        <option value="1-3 سنوات" class="bg-white dark:bg-slate-900">من 1 إلى 3 سنوات</option>
-                        <option value="3-5 سنوات" class="bg-white dark:bg-slate-900">من 3 إلى 5 سنوات</option>
-                        <option value="أكثر من 5 سنوات" class="bg-white dark:bg-slate-900">أكثر من 5 سنوات</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">نبذة عن خبراتك أو رابط السيرة الذاتية (CV) *</label>
-                    <textarea name="bio" rows="3" required placeholder="اكتب نبذة مختصرة عن خبرتك السابقة في مجالات مصانع الملابس..." class="w-full border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 rounded-2xl px-4 py-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
-                </div>
-
-                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-blue-600/30 transition text-sm mt-2">إرسال الطلب الآن</button>
-            </form>
-
-            <!-- رسالة النجاح -->
-            <div id="successMessage" class="hidden text-center py-8">
-                <div class="w-16 h-16 bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded-full flex items-center justify-center mx-auto text-2xl font-bold mb-4 animate-bounce">✓</div>
-                <h4 class="text-2xl font-black text-slate-900 dark:text-white mb-2">تم إرسال طلبك بنجاح!</h4>
-                <p id="successText" class="text-sm text-slate-600 dark:text-slate-400 mb-6">شكراً لك، تم توجيه بياناتك وإرسالها إلى القسم المختص بالفرع بنجاح.</p>
-                <button onclick="closeModal()" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white text-sm font-semibold px-8 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 transition">إغلاق النافذة</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- تنبيه منبثق عند نسخ النصوص (Toast Notification) -->
-    <div id="toast" class="fixed bottom-6 right-6 bg-emerald-600 text-white px-5 py-3 rounded-2xl shadow-2xl z-50 transform translate-y-20 opacity-0 pointer-events-none text-sm font-bold flex items-center gap-2">
-        <span>✓</span> <span id="toastText">تم النسخ بنجاح!</span>
-    </div>
-
-    <!-- الفوتر مع رابط لينكد إن -->
-    <footer class="bg-white/90 dark:bg-slate-900/90 border-t border-slate-200 dark:border-slate-800 py-8 text-center text-xs text-slate-600 dark:text-slate-400 mt-20 space-y-3 transition-colors duration-300">
-        <p>Alpha Textile © 2026 — إدارة الموارد البشرية</p>
-        <div class="flex justify-center items-center gap-2">
-            <span>إشراف وتطوير المنظومة:</span>
-            <a href="https://www.linkedin.com/in/ehab-shehata/" target="_blank" class="text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1">
-                <span>Ehab Shehata</span>
-                <span class="bg-blue-600 text-white text-[10px] px-1.5 py-0.5 rounded">LinkedIn</span>
-            </a>
-        </div>
-    </footer>
-
-    <!-- جافاسكريبت المطور -->
-    <script>
-        const modal = document.getElementById('applicationModal');
-        const jobForm = document.getElementById('jobForm');
-        const successMessage = document.getElementById('successMessage');
-        const branchSelect = document.getElementById('branchSelect');
-        const recipientEmail = document.getElementById('recipientEmail');
-        const formSubject = document.getElementById('formSubject');
-        const successText = document.getElementById('successText');
-        const targetJobInput = document.getElementById('targetJobInput');
-        const themeIcon = document.getElementById('themeIcon');
-
-        // تبديل الوضع النهاري / الليلي
-        function toggleDarkMode() {
-            const htmlElement = document.documentElement;
-            if (htmlElement.classList.contains('dark')) {
-                htmlElement.classList.remove('dark');
-                themeIcon.innerText = '🌙';
-                localStorage.setItem('theme', 'light');
-            } else {
-                htmlElement.classList.add('dark');
-                themeIcon.innerText = '☀️';
-                localStorage.setItem('theme', 'dark');
-            }
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node => {
+        const liveText = node.nodeValue;
+        const trimmedLive = liveText.trim();
+        if (!trimmedLive) return;
+        if (!originalText.has(node)) {
+          // If a dynamic element was created while English was active, recover its Arabic source.
+          const arabicSource = reverseTranslations.get(trimmedLive);
+          originalText.set(node, arabicSource ? liveText.replace(trimmedLive, arabicSource) : liveText);
         }
+        const source = originalText.get(node);
+        const trimmed = source.trim();
+        let translated;
+        if (lang === 'ar') {
+          translated = reverseTranslations.get(trimmed) || trimmed;
+        } else {
+          translated = translations[trimmed] || categoryEnglish[trimmed] || englishJobs[trimmed] || trimmed;
+        }
+        node.nodeValue = source.replace(trimmed, translated);
+      });
 
-        // التحقق من الوضع المحفوظ عند التحميل
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
-                themeIcon.innerText = '🌙';
-            } else {
-                document.documentElement.classList.add('dark');
-                themeIcon.innerText = '☀️';
-            }
+      // Translate attributes separately: text-node translation cannot affect placeholders or titles.
+      const placeholders = {
+        'اكتب اسمك بالكامل': 'Enter your full name',
+        'اكتب نبذة مختصرة عن خبرتك أو ضع رابط السيرة الذاتية': 'Briefly describe your experience or paste your CV link',
+        '01xxxxxxxxx': '01xxxxxxxxx',
+        'name@example.com': 'name@example.com'
+      };
+      document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
+        if (!el.dataset.placeholderAr) el.dataset.placeholderAr = el.getAttribute('placeholder');
+        const ar = el.dataset.placeholderAr;
+        el.setAttribute('placeholder', lang === 'ar' ? ar : (placeholders[ar] || ar));
+      });
+      document.querySelectorAll('[aria-label]').forEach(el => {
+        if (!el.dataset.ariaAr) el.dataset.ariaAr = el.getAttribute('aria-label');
+        const ariaMap = {
+          'العودة إلى أعلى الصفحة': 'Back to top',
+          'تبديل الوضع اللوني': 'Toggle color theme',
+          'إغلاق النافذة': 'Close dialog',
+          'التبديل إلى الوضع النهاري': 'Switch to light mode',
+          'التبديل إلى الوضع الليلي': 'Switch to dark mode',
+          'Switch to Arabic': 'التبديل إلى العربية',
+          'التبديل إلى الإنجليزية': 'Switch to English'
+        };
+        const ar = el.dataset.ariaAr;
+        el.setAttribute('aria-label', lang === 'ar' ? (reverseTranslations.get(ar) || ar) : (ariaMap[ar] || ar));
+      });
+
+      document.querySelectorAll('.job-card').forEach(button => {
+        button.classList.toggle('text-right', lang === 'ar');
+        button.classList.toggle('text-left', lang === 'en');
+      });
+      [...$('#branchSelect').options].forEach((option, i) => {
+        option.textContent = lang === 'ar' ? ['ألفا 1 — بلوك 800', 'ألفا 2 — بلوك 307'][i] : ['Alpha 1 — Block 800', 'Alpha 2 — Block 307'][i];
+      });
+      [...$('#experience').options].forEach((option, i) => {
+        option.textContent = lang === 'ar'
+          ? ['أقل من سنة / حديث التخرج', 'من سنة إلى 3 سنوات', 'من 3 إلى 5 سنوات', 'أكثر من 5 سنوات'][i]
+          : ['Less than 1 year / Fresh Graduate', '1–3 years', '3–5 years', 'More than 5 years'][i];
+        option.value = ['أقل من سنة', '1-3 سنوات', '3-5 سنوات', 'أكثر من 5 سنوات'][i];
+      });
+      [...$('#targetJobInput').options].forEach(option => {
+        const key = option.value;
+        option.textContent = !key
+          ? (lang === 'ar' ? 'اختر الوظيفة من القائمة' : 'Select a job from the list')
+          : (lang === 'ar' ? key : (englishJobs[key] || key));
+      });
+      $('#toast').classList.toggle('right-5', lang === 'ar');
+      $('#toast').classList.toggle('left-5', lang === 'en');
+      $('#themeToggle').setAttribute('aria-label', document.documentElement.classList.contains('dark')
+        ? (lang === 'ar' ? 'التبديل إلى الوضع النهاري' : 'Switch to light mode')
+        : (lang === 'ar' ? 'التبديل إلى الوضع الليلي' : 'Switch to dark mode'));
+      const selectedBranch = branchDetails[branchSelect.value] || branchDetails.alpha1;
+      $('#formSubject').value = lang === 'ar'
+        ? `طلب توظيف جديد — ${selectedBranch.label}`
+        : `New Job Application — ${selectedBranch.label === 'ألفا 1 (بلوك 800)' ? 'Alpha 1 (Block 800)' : 'Alpha 2 (Block 307)'}`;
+    }
+    $('#languageToggle').addEventListener('click', () => translatePage(currentLanguage === 'ar' ? 'en' : 'ar'));
+
+    const modal = $('#applicationModal');
+    const form = $('#jobForm');
+    const branchSelect = $('#branchSelect');
+    const targetJobInput = $('#targetJobInput');
+    const submitBtn = $('#submitBtn');
+    const errorBox = $('#formError');
+    const successMessage = $('#successMessage');
+    const branchDetails = {
+      alpha1: { label: 'ألفا 1 (بلوك 800)', email: 'inhab.shehata@gamateks.com.tr' },
+      alpha2: { label: 'ألفا 2 (بلوك 307)', email: 'alphahr.eg@gamateks.com.tr' }
+    };
+    const jobOptions = Object.keys(englishJobs);
+    jobOptions.forEach(job => { const option = document.createElement('option'); option.value = job; option.textContent = job; targetJobInput.appendChild(option); });
+    let previousFocus = null;
+    let toastTimer;
+
+    function applyTheme(theme) {
+      const isDark = theme === 'dark';
+      document.documentElement.classList.toggle('dark', isDark);
+      $('#themeIcon').textContent = isDark ? '☀' : '☾';
+      $('#themeToggle').setAttribute('aria-label', isDark ? 'التبديل إلى الوضع النهاري' : 'التبديل إلى الوضع الليلي');
+      try { localStorage.setItem('alpha-theme', theme); } catch (_) {}
+    }
+    $('#themeToggle').addEventListener('click', () => applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark'));
+    try { applyTheme(localStorage.getItem('alpha-theme') || 'dark'); } catch (_) { applyTheme('dark'); }
+
+    function updateBranchFields() {
+      const branch = branchDetails[branchSelect.value] || branchDetails.alpha1;
+      $('#branchEmailField').value = branch.email;
+      $('#formSubject').value = currentLanguage === 'ar'
+        ? `طلب توظيف جديد — ${branch.label}`
+        : `New Job Application — ${branch.label === 'ألفا 1 (بلوك 800)' ? 'Alpha 1 (Block 800)' : 'Alpha 2 (Block 307)'}`;
+    }
+    branchSelect.addEventListener('change', updateBranchFields);
+
+    function openModal(jobTitle = '') {
+      previousFocus = document.activeElement;
+      const preferredBranch = branchSelect.value || 'alpha1';
+      form.reset();
+      branchSelect.value = preferredBranch;
+      updateBranchFields();
+      $('#targetJobInput').value = jobOptions.includes(jobTitle) ? jobTitle : '';
+      if (currentLanguage === 'en') [...targetJobInput.options].forEach(option => { option.textContent = option.value ? (englishJobs[option.value] || option.value) : 'Select a job from the list'; });
+      form.classList.remove('hidden');
+      successMessage.classList.add('hidden');
+      errorBox.classList.add('hidden');
+      errorBox.textContent = '';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('modal-open');
+      translatePage(currentLanguage);
+      setTimeout(() => (jobTitle ? targetJobInput : branchSelect).focus(), 20);
+    }
+    function closeModal() {
+      if (!successMessage.classList.contains('hidden')) {
+        // A completed submission can be closed without a warning.
+      } else if (!form.classList.contains('hidden')) {
+        const hasDraft = ['fullName', 'phone', 'email', 'bio'].some(id => { const el = document.getElementById(id); return el && el.value.trim(); });
+        if (hasDraft && !window.confirm(currentLanguage === 'en' ? 'Close the form and discard the information entered?' : 'هل تريد إغلاق النموذج وفقد البيانات التي أدخلتها؟')) return;
+      }
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('modal-open');
+      if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+    }
+    document.querySelectorAll('[data-open-modal]').forEach(button => button.addEventListener('click', () => openModal()));
+    document.querySelectorAll('[data-job]').forEach(button => button.addEventListener('click', () => openModal(button.dataset.job)));
+    $('#closeModal').addEventListener('click', closeModal);
+    $('#successClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && !modal.classList.contains('hidden')) closeModal(); });
+
+    function showToast(message) {
+      const toast = $('#toast');
+      toast.textContent = currentLanguage === 'en' ? (translations[message] || message.replace('تم نسخ الرقم ', 'Number copied: ')) : message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2400);
+    }
+    document.querySelectorAll('[data-copy]').forEach(button => button.addEventListener('click', async () => {
+      const number = button.dataset.copy;
+      try {
+        if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(number);
+        else {
+          const temp = document.createElement('textarea'); temp.value = number; temp.setAttribute('readonly', '');
+          temp.style.position = 'fixed'; temp.style.opacity = '0'; document.body.appendChild(temp); temp.select();
+          const copied = document.execCommand('copy'); temp.remove(); if (!copied) throw new Error('copy failed');
+        }
+        showToast(`تم نسخ الرقم ${number}`);
+      } catch (_) { showToast('تعذر النسخ تلقائيًا؛ يرجى نسخ الرقم يدويًا.'); }
+    }));
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      errorBox.classList.add('hidden');
+      errorBox.textContent = '';
+      if (!form.reportValidity()) return;
+      updateBranchFields();
+      submitBtn.disabled = true;
+      submitBtn.textContent = currentLanguage === 'en' ? 'Submitting application...' : 'جارٍ إرسال الطلب...';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
         });
-
-        branchSelect.addEventListener('change', function() {
-            if (this.value === 'alpha1') {
-                recipientEmail.value = "inhab.shehata@gamateks.com.tr";
-                formSubject.value = "طلب توظيف جديد - ألفا 1 (بلوك 800)";
-            } else {
-                recipientEmail.value = "alphahr.eg@gamateks.com.tr";
-                formSubject.value = "طلب توظيف جديد - ألفا 2 (بلوك 307)";
-            }
-        });
-
-        function openModal() {
-            jobForm.reset();
-            branchSelect.dispatchEvent(new Event('change'));
-            jobForm.classList.remove('hidden');
-            successMessage.classList.add('hidden');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+        if (response.ok) {
+          form.classList.add('hidden');
+          successMessage.classList.remove('hidden');
+          $('#successMessage h3').textContent = currentLanguage === 'en' ? 'Application Submitted Successfully' : 'تم إرسال الطلب بنجاح';
+          $('#successMessage p').textContent = currentLanguage === 'en' ? 'The form service accepted your submission. This does not mean it was forwarded to the selected branch email unless routing is configured in the service.' : 'قبلت خدمة استقبال النماذج طلبك. هذا التأكيد لا يعني أن الطلب وُجّه إلى بريد الفرع المختار إلا إذا كان التوجيه مُعدًا داخل الخدمة.';
+        } else {
+          let detail = '';
+          try { const data = await response.json(); detail = Array.isArray(data.errors) ? data.errors.map(item => item.message).join(' ') : ''; } catch (_) {}
+          errorBox.textContent = currentLanguage === 'en' ? 'The application was not sent. Check your Formspree settings and try again.' : (detail || 'لم يتم إرسال الطلب. تحقق من إعدادات Formspree وحاول مرة أخرى.');
+          errorBox.classList.remove('hidden');
         }
-
-        function selectJobAndOpen(jobTitle) {
-            openModal();
-            targetJobInput.value = jobTitle;
-        }
-
-        function closeModal() {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('toast');
-                document.getElementById('toastText').innerText = `تم نسخ الرقم (${text}) بنجاح!`;
-                toast.classList.remove('translate-y-20', 'opacity-0');
-                toast.classList.add('translate-y-0', 'opacity-100');
-                setTimeout(() => {
-                    toast.classList.remove('translate-y-0', 'opacity-100');
-                    toast.classList.add('translate-y-20', 'opacity-0');
-                }, 2500);
-            });
-        }
-
-        jobForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const formData = new FormData(jobForm);
-            
-            const selectedBranch = branchSelect.value;
-            const targetEmail = selectedBranch === 'alpha1' ? 'inhab.shehata@gamateks.com.tr' : 'alphahr.eg@gamateks.com.tr';
-            formData.append('_to', targetEmail);
-
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.innerText = "جاري إرسال الطلب للفرع المختص...";
-            submitBtn.disabled = true;
-
-            try {
-                const response = await fetch(jobForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    jobForm.classList.add('hidden');
-                    successText.innerText = `شكراً لك، تم توجيه بياناتك بنجاح إلى البريد المختص للفرع (${targetEmail}).`;
-                    successMessage.classList.remove('hidden');
-                } else {
-                    alert('حدث خطأ أثناء الإرسال، برجاء المحاولة مرة أخرى.');
-                }
-            } catch (error) {
-                alert('تأكد من اتصالك بالإنترنت.');
-            } finally {
-                submitBtn.innerText = "إرسال الطلب الآن";
-                submitBtn.disabled = false;
-            }
-        });
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
+      } catch (_) {
+        errorBox.textContent = currentLanguage === 'en' ? 'Could not connect to the submission service. Check your internet connection and try again.' : 'تعذر الاتصال بخدمة الإرسال. تحقق من اتصال الإنترنت وحاول مرة أخرى.';
+        errorBox.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = currentLanguage === 'en' ? 'Submit Application' : 'إرسال طلب التوظيف';
+      }
+    });
+    $('#year').textContent = new Date().getFullYear();
+    translatePage('ar');
+  </script>
 </body>
 </html>
