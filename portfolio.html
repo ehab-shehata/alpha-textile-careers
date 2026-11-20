@@ -1,831 +1,2364 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ehab Shehata | HR Business Partner & Analytics Expert</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#06070a">
+<title>Ehab Shehata | Executive Interactive Portfolio 2026</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome 6 Pro / Free -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- GSAP & Canvas Support -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-    <style>
-        :root {
-            --primary: #ff2a2a;
-            --primary-glow: rgba(255, 42, 42, 0.4);
-            --dark: #0a0a0a;
-            --darker: #030303;
-            --card-bg: rgba(20, 20, 20, 0.4);
-            --card-border: rgba(255, 255, 255, 0.05);
-            --text: #ffffff;
-            --text-muted: #a0a0a0;
-            --text-dim: #666;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide default cursor */ }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--darker);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+<style>
+/* ==========================================================================
+   CSS DESIGN SYSTEM: CYBER-EXECUTIVE LUXURY
+   ========================================================================== */
+:root {
+  --bg: #06070a;
+  --bg-secondary: #0b0e14;
+  --surface: rgba(16, 20, 28, 0.72);
+  --surface-hover: rgba(24, 30, 42, 0.85);
+  --surface-solid: #11151e;
+  
+  --ink: #f8fafc;
+  --ink-secondary: #cbd5e1;
+  --muted: #848f9f;
+  --faint: #475569;
+  
+  --crimson: #ff2a4b;
+  --crimson-glow: rgba(255, 42, 75, 0.35);
+  --coral: #ff6584;
+  --cyan: #00f0ff;
+  --cyan-glow: rgba(0, 240, 255, 0.25);
+  --gold: #f59e0b;
+  --emerald: #10b981;
+  
+  --border: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(255, 42, 75, 0.5);
+  --border-cyan: rgba(0, 240, 255, 0.4);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+  
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-        /* --- Custom Cursor --- */
-        .cursor-dot, .cursor-outline {
-            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-            border-radius: 50%; z-index: 9999; pointer-events: none;
-        }
-        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
-        .cursor-outline {
-            width: 40px; height: 40px; border: 1px solid rgba(255, 42, 42, 0.5);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        .cursor-hover { width: 60px; height: 60px; background-color: rgba(255, 42, 42, 0.1); border-color: transparent; backdrop-filter: blur(2px); }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        /* --- Base & Utils --- */
-        #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--darker); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary), #800000); border-radius: 4px; }
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-        .nav {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            padding: 25px 5%; display: flex; justify-content: space-between; align-items: center;
-            backdrop-filter: blur(20px); background: rgba(3, 3, 3, 0.7);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .nav.scrolled { padding: 15px 5%; background: rgba(3, 3, 3, 0.95); border-bottom: 1px solid rgba(255, 42, 42, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: 1px; }
-        .nav-logo span { color: var(--text); }
-        .nav-links { display: flex; gap: 40px; list-style: none; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; position: relative; transition: color 0.3s ease; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--primary); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px var(--primary); }
-        .nav-links a:hover { color: var(--text); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-hire { background: linear-gradient(45deg, #ff2a2a, #cc0000); color: white !important; padding: 12px 28px; border-radius: 50px; font-weight: 600; border: none; font-size: 0.9rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; display: inline-block; position: relative; overflow: hidden; }
-        .nav-hire::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; }
-        .nav-hire:hover::before { left: 100%; }
-        .nav-hire:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 30px var(--primary-glow); }
-        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; }
+/* Background Ambient Canvas */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
 
-        /* --- Hero Section --- */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 5% 80px; position: relative; z-index: 1; }
-        .hero-container { max-width: 1400px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255, 42, 42, 0.05); border: 1px solid rgba(255, 42, 42, 0.3); padding: 10px 24px; border-radius: 50px; font-size: 0.9rem; color: var(--primary); margin-bottom: 30px; font-weight: 600; backdrop-filter: blur(10px); }
-        .hero-badge .pulse { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--primary-glow); } 70% { box-shadow: 0 0 0 15px rgba(255, 42, 42, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 42, 42, 0); } }
-        .hero-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
-        .hero-name .highlight { background: linear-gradient(45deg, #ff2a2a, #ff7b7b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; display: inline-block; }
-        .hero-title { font-size: 1.3rem; color: var(--text-muted); margin-bottom: 30px; font-weight: 400; letter-spacing: 1px; }
-        .hero-title .typing-text { color: var(--text); font-weight: 600; }
-        .hero-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 550px; margin-bottom: 40px; line-height: 1.9; }
-        .hero-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
-        .btn-primary { background: linear-gradient(45deg, #ff2a2a, #cc0000); color: white; padding: 16px 36px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.4s ease; display: inline-flex; align-items: center; gap: 10px; border: none; box-shadow: 0 10px 20px rgba(255, 42, 42, 0.2); }
-        .btn-primary:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 20px 40px var(--primary-glow); }
-        .btn-outline { background: rgba(255,255,255,0.03); color: var(--text); padding: 16px 36px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.4s ease; display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--card-border); backdrop-filter: blur(5px); }
-        .btn-outline:hover { border-color: var(--primary); background: rgba(255, 42, 42, 0.05); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .hero-socials { display: flex; gap: 18px; margin-top: 45px; }
-        .hero-socials a { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.02); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); font-size: 1.2rem; }
-        .hero-socials a:hover { border-color: var(--primary); background: var(--primary); color: white; transform: translateY(-5px) rotate(8deg); box-shadow: 0 15px 25px var(--primary-glow); }
+/* Ambient Radial Mesh Glows */
+.mesh-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+  animation: pulseMesh 14s infinite alternate ease-in-out;
+}
+.mesh-1 {
+  width: 55vw;
+  height: 55vw;
+  top: -10vw;
+  right: -10vw;
+  background: radial-gradient(circle, var(--crimson) 0%, transparent 70%);
+}
+.mesh-2 {
+  width: 45vw;
+  height: 45vw;
+  bottom: -10vw;
+  left: -5vw;
+  background: radial-gradient(circle, #3b82f6 0%, var(--cyan) 70%);
+  animation-delay: -7s;
+}
+@keyframes pulseMesh {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.14; }
+  100% { transform: scale(1.15) translate(-3%, 3%); opacity: 0.22; }
+}
 
-        /* --- Hero Image Animations --- */
-        .hero-image { position: relative; display: flex; justify-content: center; align-items: center; }
-        .hero-image-wrapper { position: relative; width: 420px; height: 420px; border-radius: 50%; padding: 15px; background: linear-gradient(135deg, rgba(255,42,42,0.2), transparent); box-shadow: inset 0 0 50px rgba(0,0,0,0.5); }
-        .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: relative; z-index: 2; border: 2px solid rgba(255, 255, 255, 0.1); filter: grayscale(20%) contrast(1.1); transition: all 0.5s ease; }
-        .hero-image-wrapper:hover img { filter: grayscale(0%) contrast(1.2); transform: scale(1.02); }
-        .orbit-ring { position: absolute; border: 1px dashed rgba(255, 42, 42, 0.3); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
-        .orbit-ring-1 { width: 480px; height: 480px; animation: orbit 25s linear infinite; border-style: solid; border-color: rgba(255,42,42,0.1); }
-        .orbit-ring-2 { width: 560px; height: 560px; animation: orbit 35s linear infinite reverse; }
-        .orbit-ring-3 { width: 650px; height: 650px; animation: orbit 45s linear infinite; opacity: 0.5; }
-        @keyframes orbit { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-        .orbit-dot { position: absolute; width: 12px; height: 12px; background: var(--primary); border-radius: 50%; top: -6px; left: 50%; transform: translateX(-50%); box-shadow: 0 0 20px 5px var(--primary-glow); }
-        .glow-bg { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255, 42, 42, 0.15) 0%, transparent 60%); top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; animation: glowPulse 5s ease-in-out infinite alternate; pointer-events: none; }
-        @keyframes glowPulse { 0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9); } 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); } }
+/* ==========================================================================
+   TOP EXECUTIVE APP BAR
+   ========================================================================== */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 50;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(6, 7, 10, 0.75);
+  border-bottom: 1px solid var(--border);
+}
 
-        /* --- Sections General --- */
-        section { position: relative; z-index: 1; padding: 120px 5%; }
-        .section-header { text-align: center; margin-bottom: 70px; }
-        .section-label { display: inline-block; color: var(--primary); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 15px; background: rgba(255,42,42,0.1); padding: 8px 20px; border-radius: 30px; border: 1px solid rgba(255,42,42,0.2); }
-        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .section-subtitle { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.brand-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--crimson), #8b0022);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: white;
+  box-shadow: 0 0 16px var(--crimson-glow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  flex-direction: column;
+}
+.brand-name span {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
-        /* --- Cards Global Glassmorphism --- */
-        .glass-card {
-            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 24px;
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4); overflow: hidden; position: relative;
-        }
-        
-        /* --- About --- */
-        .about { background: linear-gradient(180deg, transparent 0%, rgba(20,0,0,0.3) 50%, transparent 100%); }
-        .about-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; align-items: center; }
-        .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .stat-card { padding: 40px 30px; text-align: center; transform-style: preserve-3d; }
-        .stat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--primary), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .stat-card:hover::before { transform: scaleX(1); }
-        .stat-card:hover { border-color: rgba(255, 42, 42, 0.3); }
-        .stat-number { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 900; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; transform: translateZ(30px); }
-        .stat-label { color: var(--text-muted); font-size: 1rem; margin-top: 10px; font-weight: 500; transform: translateZ(20px); display: block; }
-        .about-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; margin-bottom: 25px; font-weight: 700; }
-        .about-content p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.9; font-size: 1.05rem; }
-        .about-content strong { color: var(--text); font-weight: 600; }
-        .mission-box { background: linear-gradient(135deg, rgba(255, 42, 42, 0.15), rgba(0,0,0,0.5)); border: 1px solid rgba(255, 42, 42, 0.2); border-radius: 20px; padding: 30px; margin-top: 35px; border-left: 4px solid var(--primary); }
-        .mission-box h4 { color: var(--primary); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-weight: 700; }
-        .mission-box p { margin: 0; font-style: italic; color: #ddd; font-size: 1.05rem; line-height: 1.8; }
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mode-badge {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 8px var(--emerald);
+  animation: liveBlink 2s infinite ease-in-out;
+}
+@keyframes liveBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
 
-        /* --- Expertise --- */
-        .expertise-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; perspective: 1000px; }
-        .expertise-card { padding: 40px; transform-style: preserve-3d; transition: border-color 0.4s ease; }
-        .expertise-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top right, rgba(255,42,42,0.1), transparent 70%); opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
-        .expertise-card:hover::after { opacity: 1; }
-        .expertise-card:hover { border-color: rgba(255, 42, 42, 0.4); }
-        .expertise-icon { width: 70px; height: 70px; border-radius: 20px; background: linear-gradient(135deg, rgba(255, 42, 42, 0.2), transparent); border: 1px solid rgba(255, 42, 42, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--primary); margin-bottom: 25px; transform: translateZ(40px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .expertise-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; transform: translateZ(30px); }
-        .expertise-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.8; transform: translateZ(20px); }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ink-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+.btn-icon.active {
+  color: var(--crimson);
+  border-color: var(--crimson);
+  background: rgba(255, 42, 75, 0.1);
+}
+.btn-cmd {
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-cmd kbd {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--ink);
+  font-size: 10px;
+}
+.btn-cmd:hover {
+  color: var(--ink);
+  border-color: rgba(255, 255, 255, 0.2);
+}
 
-        /* --- Tools --- */
-        .tools { background: linear-gradient(180deg, transparent 0%, rgba(20,0,0,0.3) 50%, transparent 100%); }
-        .tools-grid { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
-        .tool-item { padding: 20px 35px; display: flex; align-items: center; gap: 15px; transform-style: preserve-3d; }
-        .tool-item:hover { border-color: var(--primary); background: rgba(255,42,42,0.05); }
-        .tool-icon { font-size: 1.8rem; color: var(--primary); transform: translateZ(20px); }
-        .tool-name { font-weight: 600; font-size: 1.05rem; transform: translateZ(20px); }
+/* ==========================================================================
+   VIEW MODES CONTAINER: SLIDE DECK VS SCROLL FLOW
+   ========================================================================== */
+.view-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  padding-top: 64px;
+}
 
-        /* --- Timeline --- */
-        .timeline { max-width: 1000px; margin: 0 auto; position: relative; padding: 20px 0; }
-        .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(180deg, transparent, var(--primary), transparent); opacity: 0.5; }
-        .timeline-item { display: flex; justify-content: flex-end; padding-right: 50%; position: relative; margin-bottom: 80px; }
-        .timeline-item:nth-child(even) { justify-content: flex-start; padding-right: 0; padding-left: 50%; }
-        .timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--darker); border-radius: 50%; border: 4px solid var(--primary); box-shadow: 0 0 20px var(--primary-glow); z-index: 2; transition: all 0.3s ease; }
-        .timeline-item:hover .timeline-dot { background: var(--primary); transform: translateX(-50%) scale(1.3); }
-        .timeline-content { padding: 40px; max-width: 450px; margin: 0 40px; }
-        .timeline-content:hover { border-color: rgba(255, 42, 42, 0.4); box-shadow: 0 20px 40px rgba(255,42,42,0.1); }
-        .timeline-date { display: inline-block; background: rgba(255,42,42,0.1); color: var(--primary); padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; margin-bottom: 15px; border: 1px solid rgba(255,42,42,0.2); }
-        .timeline-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
-        .timeline-company { color: #ccc; font-size: 1.05rem; margin-bottom: 20px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
-        .timeline-company i { color: var(--primary); }
-        .timeline-list { list-style: none; }
-        .timeline-list li { color: var(--text-muted); font-size: 1rem; padding: 8px 0; padding-left: 25px; position: relative; line-height: 1.6; }
-        .timeline-list li::before { content: '▹'; position: absolute; left: 0; color: var(--primary); font-size: 1.2rem; font-weight: bold; }
+/* Presentation Deck Mode */
+.deck-view {
+  position: absolute;
+  inset: 64px 0 0 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-        /* --- Certifications --- */
-        .cert-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .cert-category { padding: 35px; transform-style: preserve-3d; }
-        .cert-category:hover { border-color: rgba(255, 42, 42, 0.3); }
-        .cert-category h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 15px; transform: translateZ(30px); }
-        .cert-category h3 i { color: var(--primary); font-size: 1.5rem; }
-        .cert-list { list-style: none; transform: translateZ(20px); }
-        .cert-list li { padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); color: var(--text-muted); font-size: 1rem; display: flex; align-items: flex-start; gap: 12px; transition: all 0.3s ease; }
-        .cert-list li:last-child { border-bottom: none; }
-        .cert-list li i { color: var(--primary); font-size: 1rem; margin-top: 4px; }
-        .cert-list li:hover { color: #fff; transform: translateX(5px); }
+.slide-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1480px;
+  margin: 0 auto;
+}
 
-        /* --- Values --- */
-        .values { background: linear-gradient(180deg, transparent 0%, rgba(20,0,0,0.3) 50%, transparent 100%); }
-        .values-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .value-card { text-align: center; padding: 50px 30px; transform-style: preserve-3d; }
-        .value-card:hover { border-color: rgba(255, 42, 42, 0.3); }
-        .value-icon { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, rgba(255,42,42,0.1), transparent); border: 1px solid rgba(255, 42, 42, 0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; color: var(--primary); transform: translateZ(40px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: all 0.4s ease; }
-        .value-card:hover .value-icon { background: var(--primary); color: white; transform: translateZ(50px) scale(1.1); box-shadow: 0 15px 30px var(--primary-glow); }
-        .value-card h4 { font-size: 1.3rem; font-weight: 700; transform: translateZ(30px); }
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 4vh 4vw 14vh 4vw;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+.slide.active {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
 
-        /* --- Achievements --- */
-        .achievements-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .achievement-card { padding: 40px; display: flex; align-items: flex-start; gap: 25px; transform-style: preserve-3d; }
-        .achievement-card:hover { border-color: rgba(255, 42, 42, 0.3); }
-        .achievement-icon { width: 60px; height: 60px; min-width: 60px; border-radius: 16px; background: linear-gradient(135deg, rgba(255,42,42,0.2), transparent); border: 1px solid rgba(255, 42, 42, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--primary); transform: translateZ(30px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .achievement-card h4 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; transform: translateZ(25px); }
-        .achievement-card p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; transform: translateZ(20px); }
+/* Continuous Scroll Flow Mode */
+body.mode-scroll {
+  overflow-y: auto !important;
+}
+body.mode-scroll .deck-view {
+  position: relative;
+  inset: auto;
+  display: block;
+  height: auto;
+  overflow: visible;
+  padding-bottom: 120px;
+}
+body.mode-scroll .slide-stage {
+  height: auto;
+}
+body.mode-scroll .slide {
+  position: relative;
+  inset: auto;
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  min-height: 85vh;
+  padding: 80px 4vw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-        /* --- Contact --- */
-        .contact { background: linear-gradient(180deg, transparent 0%, rgba(20,0,0,0.5) 100%); }
-        .contact-container { max-width: 900px; margin: 0 auto; text-align: center; }
-        .contact-card { padding: 80px 50px; position: relative; overflow: hidden; transform-style: preserve-3d; border-radius: 40px; }
-        .contact-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent 0deg, rgba(255,42,42,0.1) 90deg, transparent 180deg); animation: rotate 15s linear infinite; pointer-events: none; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .contact-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; margin-bottom: 20px; font-weight: 800; transform: translateZ(40px); text-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        .contact-card p { color: #ccc; margin-bottom: 50px; font-size: 1.1rem; transform: translateZ(30px); max-width: 500px; margin-left: auto; margin-right: auto; }
-        .contact-info { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-bottom: 50px; transform: translateZ(30px); }
-        .contact-item { display: flex; align-items: center; gap: 15px; color: white; text-decoration: none; font-size: 1.1rem; font-weight: 500; transition: all 0.3s ease; }
-        .contact-item:hover { color: var(--primary); }
-        .contact-item i { width: 55px; height: 55px; border-radius: 50%; background: rgba(255, 42, 42, 0.1); border: 1px solid rgba(255, 42, 42, 0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.3rem; box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: all 0.3s ease; }
-        .contact-item:hover i { background: var(--primary); color: white; transform: scale(1.1); box-shadow: 0 15px 30px var(--primary-glow); }
-        .contact-socials { display: flex; justify-content: center; gap: 20px; transform: translateZ(30px); }
-        .contact-socials a { width: 60px; height: 60px; border-radius: 50%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--text); text-decoration: none; transition: all 0.4s ease; font-size: 1.5rem; backdrop-filter: blur(5px); }
-        .contact-socials a:hover { border-color: var(--primary); background: var(--primary); color: white; transform: translateY(-8px) rotate(10deg); box-shadow: 0 15px 30px var(--primary-glow); }
+/* ==========================================================================
+   TYPOGRAPHY & CARD COMPONENTS
+   ========================================================================== */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 16px;
+}
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: var(--crimson);
+  box-shadow: 0 0 8px var(--crimson);
+}
 
-        footer { text-align: center; padding: 40px 5%; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); font-size: 0.95rem; background: var(--darker); }
-        footer span { color: var(--primary); font-weight: 600; }
+.title-xl {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4.6vw, 68px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 16px;
+}
+.title-xl .gradient-text {
+  background: linear-gradient(135deg, #ffffff 30%, var(--muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.title-xl .accent-text {
+  background: linear-gradient(135deg, var(--crimson) 0%, var(--coral) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+.title-xl .cyan-text {
+  background: linear-gradient(135deg, var(--cyan) 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-        /* --- Loader --- */
-        .loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 25px; }
-        .loader-text { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; letter-spacing: 5px; position: relative; overflow: hidden; }
-        .loader-text::after { content: 'EHAB SHEHATA'; position: absolute; top: 0; left: 0; color: var(--primary); width: 0%; overflow: hidden; animation: loadText 2s ease forwards; white-space: nowrap; }
-        @keyframes loadText { 0% { width: 0%; } 100% { width: 100%; } }
-        .loader-bar { width: 250px; height: 2px; background: rgba(255,255,255,0.1); overflow: hidden; position: relative; }
-        .loader-progress { width: 0%; height: 100%; background: var(--primary); animation: loadProgress 2s cubic-bezier(0.4, 0, 0.2, 1) forwards; box-shadow: 0 0 10px var(--primary); }
-        @keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
+.sub-lead {
+  font-size: clamp(15px, 1.35vw, 19px);
+  line-height: 1.68;
+  color: var(--ink-secondary);
+  max-width: 720px;
+  font-weight: 400;
+}
 
-        /* --- Media Queries --- */
-        @media (max-width: 1024px) {
-            .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .hero-content { order: 2; }
-            .hero-image { order: 1; margin-bottom: 30px; }
-            .hero-desc { margin: 0 auto 40px; }
-            .hero-buttons { justify-content: center; }
-            .hero-socials { justify-content: center; }
-            .about-container { grid-template-columns: 1fr; }
-            .timeline::before { left: 30px; }
-            .timeline-item, .timeline-item:nth-child(even) { justify-content: flex-start; padding-left: 80px; padding-right: 0; margin-bottom: 50px; }
-            .timeline-dot { left: 30px; }
-            .timeline-content { margin: 0; max-width: 100%; }
-            .values-grid { grid-template-columns: repeat(2, 1fr); }
-            .achievements-grid { grid-template-columns: 1fr; }
-            * { cursor: auto; } .cursor-dot, .cursor-outline { display: none; } /* Disable custom cursor on touch/smaller screens */
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-            .nav-hire { display: none; }
-            .hero-image-wrapper { width: 300px; height: 300px; }
-            .orbit-ring-1 { width: 350px; height: 350px; }
-            .orbit-ring-2 { width: 410px; height: 410px; }
-            .orbit-ring-3 { width: 470px; height: 470px; }
-            .values-grid { grid-template-columns: 1fr; }
-            .contact-info { flex-direction: column; gap: 25px; }
-            .stat-number { font-size: 2.5rem; }
-        }
-    </style>
+.glass-panel {
+  background: var(--surface);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: var(--surface-hover);
+}
+
+/* ==========================================================================
+   SLIDE 01: HERO SECTION
+   ========================================================================== */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 5vw;
+  width: 100%;
+}
+.hero-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 42, 75, 0.1);
+  border: 1px solid rgba(255, 42, 75, 0.3);
+  color: #ffa1b2;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6.8vw, 102px);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+  margin-bottom: 18px;
+  color: #fff;
+}
+.hero-title span {
+  display: block;
+  background: linear-gradient(135deg, var(--crimson) 0%, #ff6b8b 60%, #ffa8ba 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-role-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 32px);
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 22px;
+  min-height: 48px;
+}
+.role-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background: var(--crimson);
+  box-shadow: 0 0 10px var(--crimson);
+  animation: blinkCursor 0.8s infinite;
+  vertical-align: middle;
+}
+@keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.hero-description {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 620px;
+  margin-bottom: 34px;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--crimson) 0%, #d41434 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px var(--crimson-glow);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(255, 42, 75, 0.5);
+  background: linear-gradient(135deg, #ff4766 0%, #e0183b 100%);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Hero 3D Orb Visual */
+.hero-visual-col {
+  position: relative;
+  height: min(58vh, 520px);
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hologram-stage {
+  position: relative;
+  width: min(36vw, 440px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.holo-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.holo-ring-1 {
+  inset: 0;
+  border: 1px dashed rgba(255, 42, 75, 0.35);
+  animation: rotateRing 40s linear infinite;
+  box-shadow: 0 0 80px rgba(255, 42, 75, 0.12), inset 0 0 80px rgba(255, 42, 75, 0.08);
+}
+.holo-ring-2 {
+  inset: 12%;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  animation: rotateRingRev 28s linear infinite;
+}
+.holo-ring-3 {
+  inset: 24%;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  animation: rotateRing 20s linear infinite;
+}
+@keyframes rotateRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes rotateRingRev { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+
+.holo-core {
+  position: relative;
+  width: 46%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #202738 0%, #0d1017 75%);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.85), 0 0 60px var(--crimson-glow);
+  z-index: 5;
+}
+.core-monogram {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4.8vw, 64px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, #ffffff 40%, var(--coral) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.core-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--crimson);
+  letter-spacing: 0.18em;
+  margin-top: 4px;
+}
+
+/* Floating Satellite Pills */
+.sat-pill {
+  position: absolute;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  background: rgba(15, 19, 28, 0.88);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 8;
+  white-space: nowrap;
+  animation: floatSat 6s ease-in-out infinite alternate;
+}
+.sat-pill i { color: var(--crimson); font-size: 13px; }
+.sat-pill.p1 { top: 8%; right: -5%; animation-delay: 0s; }
+.sat-pill.p2 { bottom: 12%; left: -6%; animation-delay: -2s; }
+.sat-pill.p3 { bottom: 0%; right: 10%; animation-delay: -4s; }
+@keyframes floatSat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-10px) rotate(1deg); }
+}
+
+/* ==========================================================================
+   SLIDE 02: PROFILE & LIVE STATS
+   ========================================================================== */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+.index-indicator {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--faint);
+  letter-spacing: 0.14em;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 4vw;
+  align-items: center;
+}
+.stat-quad {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.stat-card {
+  padding: 24px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, rgba(23, 28, 38, 0.8), rgba(12, 15, 22, 0.85));
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.stat-card:hover {
+  border-color: var(--border-focus);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+.stat-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.stat-card:hover::after { opacity: 1; }
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4vw, 54px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.profile-content h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #fff;
+}
+.profile-content p {
+  color: var(--ink-secondary);
+  font-size: 16px;
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+.manifesto-quote {
+  padding: 20px 24px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-left: 3px solid var(--crimson);
+  background: linear-gradient(90deg, rgba(255, 42, 75, 0.08), transparent);
+  color: #f1f5f9;
+  font-size: 15px;
+  line-height: 1.68;
+  font-style: italic;
+  margin-top: 22px;
+}
+.note-foot {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 14px;
+  display: block;
+}
+
+/* ==========================================================================
+   SLIDE 03: 6 CORE EXPERTISE CARDS
+   ========================================================================== */
+.cards-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.tilt-card {
+  padding: 26px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, rgba(20, 25, 36, 0.75), rgba(10, 13, 20, 0.85));
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transform-style: preserve-3d;
+}
+.tilt-card:hover {
+  border-color: rgba(255, 42, 75, 0.45);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(255, 42, 75, 0.1);
+}
+.card-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 42, 75, 0.1);
+  border: 1px solid rgba(255, 42, 75, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--crimson);
+  font-size: 20px;
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+.tilt-card:hover .card-icon-box {
+  background: var(--crimson);
+  color: white;
+  transform: scale(1.08);
+  box-shadow: 0 0 20px var(--crimson-glow);
+}
+.tilt-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.tilt-card p {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   SLIDE 04: DIGITAL HR APPROACH (THE FLYWHEEL)
+   ========================================================================== */
+.flow-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 36px;
+  position: relative;
+}
+.flow-step-card {
+  padding: 26px 22px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  position: relative;
+  transition: var(--transition);
+}
+.flow-step-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--crimson);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+.flow-step-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid var(--crimson);
+  border-right: 2px solid var(--crimson);
+  z-index: 10;
+}
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--crimson);
+  margin-bottom: 12px;
+  display: block;
+}
+.flow-step-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.flow-step-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   SLIDE 05: PROFESSIONAL EXPERIENCE TIMELINE
+   ========================================================================== */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+.experience-card {
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, rgba(22, 27, 37, 0.85), rgba(11, 14, 21, 0.9));
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.experience-card:hover {
+  border-color: rgba(255, 42, 75, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+.experience-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--crimson), #ff6b8b);
+  border-radius: 4px 0 0 4px;
+}
+.exp-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.exp-role {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.exp-company {
+  font-size: 14px;
+  color: var(--ink-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.exp-bullets li {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  position: relative;
+  padding-left: 20px;
+}
+.exp-bullets li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--crimson);
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   SLIDE 06: DIGITAL TOOLKIT & HR-MASTER
+   ========================================================================== */
+.toolkit-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 4vw;
+  align-items: center;
+}
+.hr-master-hero {
+  padding: 34px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(255, 42, 75, 0.12), rgba(15, 20, 30, 0.85));
+  border: 1px solid rgba(255, 42, 75, 0.3);
+  position: relative;
+}
+.hr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--crimson);
+  color: white;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+.hr-master-hero h3 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+.hr-master-hero p {
+  color: var(--ink-secondary);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.tool-chips-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.tool-chip {
+  padding: 16px 22px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.tool-chip i {
+  color: var(--crimson);
+  font-size: 18px;
+  transition: var(--transition);
+}
+.tool-chip:hover {
+  border-color: var(--crimson);
+  background: rgba(255, 42, 75, 0.08);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.tool-chip:hover i {
+  transform: scale(1.15);
+}
+
+/* ==========================================================================
+   SLIDE 07: EDUCATION & CREDENTIALS MATRIX
+   ========================================================================== */
+.credentials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.cred-card {
+  padding: 24px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+.cred-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+  background: var(--surface-hover);
+}
+.cred-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.cred-header i {
+  font-size: 18px;
+  color: var(--crimson);
+}
+.cred-header h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.cred-list {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   SLIDE 08: PRINCIPLES & PROVEN IMPACT
+   ========================================================================== */
+.values-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.value-box {
+  padding: 24px 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: var(--transition);
+}
+.value-box:hover {
+  border-color: var(--crimson);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+.value-box i {
+  font-size: 26px;
+  color: var(--crimson);
+  margin-bottom: 12px;
+  display: inline-block;
+  transition: var(--transition);
+}
+.value-box:hover i { transform: scale(1.18); }
+.value-box b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.impacts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.impact-item {
+  padding: 22px 24px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: var(--transition);
+}
+.impact-item:hover {
+  border-color: rgba(255, 42, 75, 0.4);
+  transform: translateY(-3px);
+}
+.impact-item i {
+  color: var(--crimson);
+  font-size: 24px;
+  margin-top: 3px;
+}
+.impact-item b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.impact-item span {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   SLIDE 09: CONTACT & FINALE
+   ========================================================================== */
+.contact-hero-card {
+  padding: clamp(32px, 5vw, 68px);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(255, 42, 75, 0.14) 0%, rgba(13, 17, 24, 0.95) 60%);
+  border: 1px solid rgba(255, 42, 75, 0.35);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.contact-hero-card::after {
+  content: "EHAB";
+  position: absolute;
+  right: -20px;
+  bottom: -60px;
+  font-family: var(--font-display);
+  font-size: clamp(100px, 18vw, 240px);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+  line-height: 1;
+}
+.contact-links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 34px;
+  z-index: 5;
+  position: relative;
+}
+.contact-link-pill {
+  padding: 14px 22px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.contact-link-pill i { color: var(--crimson); font-size: 16px; }
+.contact-link-pill:hover {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px var(--crimson-glow);
+}
+.contact-link-pill:hover i { color: white; }
+
+/* ==========================================================================
+   FLOATING EXECUTIVE CONTROLS & HUD
+   ========================================================================== */
+.controls-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  background: rgba(12, 16, 24, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.65);
+}
+.nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.nav-btn:hover {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  color: white;
+  transform: scale(1.08);
+}
+.progress-rail {
+  width: 140px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  width: 11%;
+  background: linear-gradient(90deg, var(--crimson), var(--coral));
+  border-radius: 4px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-counter {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  min-width: 58px;
+  text-align: center;
+}
+.dock-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+}
+.hint-text {
+  font-size: 11px;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   FULL OVERVIEW MODAL
+   ========================================================================== */
+.overview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(5, 7, 10, 0.95);
+  backdrop-filter: blur(28px);
+  display: none;
+  padding: 60px 7vw;
+  overflow-y: auto;
+}
+.overview-modal.open { display: block; }
+.overview-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+.thumbs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.thumb-card {
+  padding: 22px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+}
+.thumb-card:hover {
+  border-color: var(--crimson);
+  transform: translateY(-4px);
+  background: var(--surface-hover);
+}
+.thumb-card.active-thumb {
+  border-color: var(--crimson);
+  background: rgba(255, 42, 75, 0.08);
+}
+.thumb-card small {
+  font-family: var(--font-mono);
+  color: var(--crimson);
+  font-weight: 700;
+  font-size: 11px;
+  display: block;
+  margin-bottom: 8px;
+}
+.thumb-card b {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: #fff;
+  display: block;
+}
+
+/* ==========================================================================
+   COMMAND PALETTE MODAL (CTRL + K)
+   ========================================================================== */
+.cmd-palette-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  z-index: 110;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+}
+.cmd-palette-backdrop.open { display: flex; }
+.cmd-box {
+  width: min(92vw, 580px);
+  background: #0f141d;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 42, 75, 0.15);
+  overflow: hidden;
+}
+.cmd-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.cmd-input-wrap i { color: var(--muted); font-size: 18px; }
+.cmd-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+.cmd-list {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 12px;
+}
+.cmd-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  color: var(--ink-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cmd-item:hover, .cmd-item.selected {
+  background: rgba(255, 42, 75, 0.12);
+  color: #fff;
+}
+.cmd-item i { margin-right: 12px; color: var(--crimson); width: 18px; }
+
+/* Interactive Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #151b27;
+  border: 1px solid var(--crimson);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-size: 13.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 150;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .hero-layout, .profile-grid, .toolkit-layout, .timeline-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .hero-visual-col { display: none; }
+  .cards-matrix, .credentials-grid, .thumbs-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .flow-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .flow-step-card:nth-child(2)::after { display: none; }
+}
+
+@media (max-width: 768px) {
+  .app-header { padding: 0 18px; }
+  .header-center, .hint-text { display: none; }
+  .slide { padding: 40px 5vw 120px 5vw; }
+  .cards-matrix, .credentials-grid, .thumbs-grid, .values-row, .impacts-row, .stat-quad, .flow-container {
+    grid-template-columns: 1fr;
+  }
+  .flow-step-card::after { display: none !important; }
+  .hero-title { font-size: 46px; }
+  .controls-dock {
+    width: 92%;
+    justify-content: space-between;
+    bottom: 16px;
+  }
+  .progress-rail { width: 80px; }
+}
+</style>
 </head>
 <body>
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+<!-- Dynamic Interactive Canvas -->
+<canvas id="bg-canvas"></canvas>
+<div class="mesh-glow mesh-1"></div>
+<div class="mesh-glow mesh-2"></div>
 
-    <div class="loader" id="loader">
-        <div class="loader-text">EHAB SHEHATA</div>
-        <div class="loader-bar"><div class="loader-progress"></div></div>
+<!-- Executive Top App Bar -->
+<header class="app-header">
+  <div class="brand" onclick="go(0)">
+    <div class="brand-avatar">ES</div>
+    <div class="brand-name">
+      EHAB SHEHATA
+      <span>HR & Analytics Architecture</span>
     </div>
+  </div>
 
-    <canvas id="particles-canvas"></canvas>
+  <div class="header-center">
+    <div class="mode-badge">
+      <span class="live-dot"></span>
+      EXECUTIVE PORTFOLIO · 2026
+    </div>
+  </div>
 
-    <nav class="nav" id="navbar">
-        <a href="#" class="nav-logo"><i class="fas fa-chart-line"></i><span>EHAB</span></a>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#expertise">Expertise</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#certifications">Certs</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a href="#contact" class="nav-hire">Get In Touch</a>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
-    </nav>
+  <div class="header-actions">
+    <button class="btn-cmd" id="cmdBtn" title="Quick Search (Ctrl + K)">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Search</span>
+      <kbd>⌘K</kbd>
+    </button>
+    <button class="btn-icon" id="modeToggleBtn" title="Switch between Slide Deck & Scroll Mode">
+      <i class="fa-solid fa-table-columns"></i>
+    </button>
+    <button class="btn-icon" id="soundToggleBtn" title="Toggle UI Sound Effects">
+      <i class="fa-solid fa-volume-xmark" id="soundIcon"></i>
+    </button>
+    <button class="btn-icon" id="fullBtn" title="Toggle Fullscreen (F)">
+      <i class="fa-solid fa-expand"></i>
+    </button>
+  </div>
+</header>
 
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge"><span class="pulse"></span>Available for Opportunities</div>
-                <h1 class="hero-name">Hi, I am <span class="highlight">Ehab Shehata</span></h1>
-                <p class="hero-title"><span class="typing-text" id="typing"></span><span class="cursor">|</span></p>
-                <p class="hero-desc">HR professional with 6+ years of experience combining strategic HR management with strong technical expertise. Specialized in HR Analytics, workforce planning, and building HR systems to support data-driven decision-making.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary"><i class="fas fa-paper-plane"></i>Contact Me</a>
-                    <a href="https://www.linkedin.com/in/ehab-shehata" target="_blank" class="btn-outline"><i class="fab fa-linkedin"></i>LinkedIn</a>
-                </div>
-                <div class="hero-socials">
-                    <a href="tel:+201066814959" title="Call Me"><i class="fas fa-phone"></i></a>
-                    <a href="https://www.linkedin.com/in/ehab-shehata" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="mailto:ehab@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                </div>
+<!-- Main Viewport -->
+<div class="view-viewport">
+  <main class="deck-view" id="deckContainer">
+    <div class="slide-stage">
+
+      <!-- SLIDE 01: HERO -->
+      <section class="slide active" data-title="The Introduction" id="slide-0">
+        <div class="hero-layout">
+          <div>
+            <div class="hero-badge-wrap">
+              <span class="hero-badge">
+                <i class="fa-solid fa-bolt"></i> PEOPLE · PERFORMANCE · TECHNOLOGY
+              </span>
             </div>
-            <div class="hero-image">
-                <div class="glow-bg"></div>
-                <div class="orbit-ring orbit-ring-1"><div class="orbit-dot"></div></div>
-                <div class="orbit-ring orbit-ring-2"><div class="orbit-dot"></div></div>
-                <div class="orbit-ring orbit-ring-3"><div class="orbit-dot"></div></div>
-                <div class="hero-image-wrapper">
-                    <img src="https://scontent.faly8-1.fna.fbcdn.net/v/t39.30808-6/709205762_10243840023403163_4053029910313996078_n.jpg?stp=dst-jpg_tt6&cstp=mx1254x1254&ctp=s1254x1254&_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yl7CwVu6JbUQ7kNvwFhJfYm&_nc_oc=AdqEKk3tHkuQRzv5ZQiYhb05aUR_4VBNRH_yrW9N7CZl4DlnCOzPCOJGTIKtGOcyifw&_nc_zt=23&_nc_ht=scontent.faly8-1.fna&_nc_gid=MLWV2uS0rrcDOjHvwCZRaA&_nc_ss=7b2a8&oh=00_Af9vGklUtrmL8yrDFrA9aR0IwL3Z_S6mCc7bKMvaQ13_IA&oe=6A29A472" alt="Ehab Shehata" id="hero-img">
-                </div>
+            <h1 class="hero-title">EHAB<span>SHEHATA</span></h1>
+            <div class="hero-role-box">
+              <span id="roleText">HR Business Partner</span><span class="role-cursor"></span>
             </div>
+            <p class="hero-description">
+              Bridging strategic human resources, workforce operations, and data-driven technology to turn people information into better business decisions.
+            </p>
+            <div class="hero-actions">
+              <a class="btn-primary" href="https://www.linkedin.com/in/ehab-shehata" target="_blank" rel="noreferrer">
+                <i class="fa-brands fa-linkedin"></i> Connect on LinkedIn
+              </a>
+              <button class="btn-secondary" onclick="go(1)">
+                Explore Deck <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i>
+              </button>
+              <button class="btn-secondary" onclick="copyContact()">
+                <i class="fa-solid fa-phone"></i> +20 106 681 4959
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-visual-col">
+            <div class="hologram-stage" id="holoStage">
+              <div class="holo-ring holo-ring-1"></div>
+              <div class="holo-ring holo-ring-2"></div>
+              <div class="holo-ring holo-ring-3"></div>
+              <div class="holo-core">
+                <div class="core-monogram">ES</div>
+                <div class="core-label">STRATEGY & DATA</div>
+              </div>
+              <div class="sat-pill p1"><i class="fa-solid fa-chart-line"></i> HR ANALYTICS</div>
+              <div class="sat-pill p2"><i class="fa-solid fa-users-gear"></i> WORKFORCE PLANNING</div>
+              <div class="sat-pill p3"><i class="fa-solid fa-code"></i> HRIS ARCHITECTURE</div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <section class="about" id="about">
+      <!-- SLIDE 02: PROFILE & LIVE STATS -->
+      <section class="slide" data-title="Professional Overview" id="slide-1">
         <div class="section-header">
-            <span class="section-label">About Me</span>
-            <h2 class="section-title">Professional Overview</h2>
-            <p class="section-subtitle">Bridging the gap between people operations and data-driven decision-making</p>
+          <div>
+            <div class="eyebrow">01 / Profile</div>
+            <h2 class="title-xl">People strategy.<br><span class="accent-text">Powered by data.</span></h2>
+          </div>
+          <span class="index-indicator">01 — 09</span>
         </div>
-        <div class="about-container">
-            <div class="about-stats">
-                <div class="stat-card glass-card"><span class="stat-number counter" data-target="6">0</span><span class="stat-label">Years Experience</span></div>
-                <div class="stat-card glass-card"><span class="stat-number counter" data-target="15">0</span><span class="stat-label">Certifications</span></div>
-                <div class="stat-card glass-card"><span class="stat-number counter" data-target="1">0</span><span class="stat-label">HR System Built</span></div>
-                <div class="stat-card glass-card"><span class="stat-number counter" data-target="100">0</span><span class="stat-label">% Dedication</span></div>
-            </div>
-            <div class="about-content">
-                <h3>HR Business Partner & Analytics Expert</h3>
-                <p>Dedicated HR professional with a unique blend of strategic HR management and technical expertise. Currently serving as an HR Business Partner at Alpha Textile, where I bridge the gap between people operations and data-driven decision-making.</p>
-                <p>I specialize in transforming raw HR data into actionable insights through Power BI dashboards and custom-built solutions. My technical toolkit includes PHP, MySQL, and HR Analytics, which I leveraged to develop <strong>"HR-MASTER"</strong>, a tailored system for workforce monitoring and attendance tracking.</p>
-                <div class="mission-box">
-                    <h4><i class="fas fa-bullseye"></i> My Mission</h4>
-                    <p>Empowering organizations through smart HR solutions, data-driven insights, and continuous improvement to achieve sustainable growth.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="expertise">
+        <div class="profile-grid">
+          <div class="stat-quad">
+            <div class="stat-card">
+              <div class="stat-number"><span data-count="6">0</span>+</div>
+              <div class="stat-label">Years at Alpha Textile*</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">1</div>
+              <div class="stat-label">HR System Developed</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" style="color: var(--crimson);">HR</div>
+              <div class="stat-label">Business Partnering</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" style="color: var(--cyan);">BI</div>
+              <div class="stat-label">Analytics & Reporting</div>
+            </div>
+          </div>
+
+          <div class="profile-content">
+            <h3>A Hybrid HR & Technology Profile</h3>
+            <p>
+              HR professional combining strategic HR management with technical expertise. The focus is on connecting people operations to business goals, building practical reporting tools, and supporting decisions with workforce insights.
+            </p>
+            <p>
+              Currently serving at Alpha Textile in Alexandria, Egypt, with deep experience spanning HR operations, workforce planning, predictive analytics, and enterprise HR systems.
+            </p>
+            <div class="manifesto-quote">
+              “Empowering organizations through smart HR solutions, data-driven insights, and continuous improvement.”
+            </div>
+            <span class="note-foot">*The source portfolio describes 7+ years of total experience and a tenure beginning in June 2019.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 03: 6 CORE EXPERTISE AREAS -->
+      <section class="slide" data-title="Core Expertise" id="slide-2">
         <div class="section-header">
-            <span class="section-label">What I Do</span>
-            <h2 class="section-title">Core Expertise</h2>
-            <p class="section-subtitle">Specialized skills that drive organizational excellence</p>
+          <div>
+            <div class="eyebrow">02 / Capability Matrix</div>
+            <h2 class="title-xl">Six Connected Areas<br>of <span class="accent-text">Expertise.</span></h2>
+          </div>
+          <span class="index-indicator">02 — 09</span>
         </div>
-        <div class="expertise-grid">
-            <div class="expertise-card glass-card">
-                <div class="expertise-icon"><i class="fas fa-handshake"></i></div>
-                <h3>HR Business Partnering</h3>
-                <p>Building strategic partnerships to align HR initiatives with business goals and drive organizational performance.</p>
-            </div>
-            <div class="expertise-card glass-card">
-                <div class="expertise-icon"><i class="fas fa-chart-bar"></i></div>
-                <h3>HR Analytics & Dashboards</h3>
-                <p>Designing Power BI dashboards to track KPIs, turnover, performance, and workforce metrics for informed decisions.</p>
-            </div>
-            <div class="expertise-card glass-card">
-                <div class="expertise-icon"><i class="fas fa-users-cog"></i></div>
-                <h3>Workforce Planning & Operations</h3>
-                <p>Optimizing production lines through Line Balancing and SAM (Standard Allowed Minutes) analysis.</p>
-            </div>
-            <div class="expertise-card glass-card">
-                <div class="expertise-icon"><i class="fas fa-cogs"></i></div>
-                <h3>HRIS Development & Automation</h3>
-                <p>Building custom systems to streamline HR processes and digitize workforce management operations.</p>
-            </div>
-            <div class="expertise-card glass-card">
-                <div class="expertise-icon"><i class="fas fa-code"></i></div>
-                <h3>Technical Development</h3>
-                <p>PHP, MySQL, and database-driven applications for custom HR solutions and data management.</p>
-            </div>
-            <div class="expertise-card glass-card">
-                <div class="expertise-icon"><i class="fas fa-graduation-cap"></i></div>
-                <h3>Training & Development</h3>
-                <p>Designing and delivering training programs that enhance employee skills and organizational capability.</p>
-            </div>
-        </div>
-    </section>
 
-    <section class="tools">
+        <div class="cards-matrix">
+          <div class="tilt-card" data-tilt>
+            <div class="card-icon-box"><i class="fa-solid fa-handshake"></i></div>
+            <h3>HR Business Partnering</h3>
+            <p>Aligning strategic HR initiatives directly with corporate business objectives and bottom-line organizational performance.</p>
+          </div>
+          <div class="tilt-card" data-tilt>
+            <div class="card-icon-box"><i class="fa-solid fa-chart-pie"></i></div>
+            <h3>HR Analytics & Dashboards</h3>
+            <p>Building high-impact Power BI reporting suites for KPIs, turnover analysis, performance metrics, and workforce dynamics.</p>
+          </div>
+          <div class="tilt-card" data-tilt>
+            <div class="card-icon-box"><i class="fa-solid fa-people-group"></i></div>
+            <h3>Workforce Planning</h3>
+            <p>Production-line optimization through scientific Line Balancing and Standard Allowed Minute (SAM) engineering.</p>
+          </div>
+          <div class="tilt-card" data-tilt>
+            <div class="card-icon-box"><i class="fa-solid fa-gears"></i></div>
+            <h3>HRIS & Automation</h3>
+            <p>Architecting custom software tools that eliminate manual friction, digitize records, and automate workforce tracking.</p>
+          </div>
+          <div class="tilt-card" data-tilt>
+            <div class="card-icon-box"><i class="fa-solid fa-code"></i></div>
+            <h3>Technical Development</h3>
+            <p>Hands-on engineering in PHP, MySQL, and relational database systems tailored for high-volume HR operations.</p>
+          </div>
+          <div class="tilt-card" data-tilt>
+            <div class="card-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3>Training & Development</h3>
+            <p>Designing targeted learning roadmaps and competency frameworks to strengthen human capability and retention.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 04: DIGITAL HR FLYWHEEL -->
+      <section class="slide" data-title="Digital HR Approach" id="slide-3">
         <div class="section-header">
-            <span class="section-label">My Toolkit</span>
-            <h2 class="section-title">Tools & Technologies</h2>
-            <p class="section-subtitle">The technologies I use to deliver results</p>
+          <div>
+            <div class="eyebrow">03 / Operating Architecture</div>
+            <h2 class="title-xl">From Workforce Data<br>to <span class="accent-text">Business Action.</span></h2>
+            <p class="sub-lead">A closed-loop framework connecting raw workforce signals to proactive strategic execution.</p>
+          </div>
+          <span class="index-indicator">03 — 09</span>
         </div>
-        <div class="tools-grid">
-            <div class="tool-item glass-card"><i class="fas fa-chart-pie tool-icon"></i><span class="tool-name">Power BI</span></div>
-            <div class="tool-item glass-card"><i class="fas fa-file-excel tool-icon"></i><span class="tool-name">Microsoft Excel</span></div>
-            <div class="tool-item glass-card"><i class="fas fa-database tool-icon"></i><span class="tool-name">MySQL</span></div>
-            <div class="tool-item glass-card"><i class="fab fa-php tool-icon"></i><span class="tool-name">PHP</span></div>
-            <div class="tool-item glass-card"><i class="fas fa-laptop-code tool-icon"></i><span class="tool-name">HR-MASTER</span></div>
-            <div class="tool-item glass-card"><i class="fas fa-brain tool-icon"></i><span class="tool-name">AI & Data Analytics</span></div>
-            <div class="tool-item glass-card"><i class="fas fa-project-diagram tool-icon"></i><span class="tool-name">Agile PM</span></div>
-        </div>
-    </section>
 
-    <section id="experience">
-        <div class="section-header">
-            <span class="section-label">Career Path</span>
-            <h2 class="section-title">Professional Experience</h2>
-            <p class="section-subtitle">My journey in the HR & Analytics field</p>
+        <div class="flow-container">
+          <div class="flow-step-card">
+            <span class="step-num">01 / CAPTURE</span>
+            <h3>People Data</h3>
+            <p>Attendance streams, workforce structures, headcount transitions, and daily operational activity.</p>
+          </div>
+          <div class="flow-step-card">
+            <span class="step-num">02 / STRUCTURE</span>
+            <h3>HR Systems</h3>
+            <p>Centralize, sanitize, and normalize disparate personnel logs through custom HRIS and MySQL architectures.</p>
+          </div>
+          <div class="flow-step-card">
+            <span class="step-num">03 / INTERPRET</span>
+            <h3>Analytics</h3>
+            <p>Transform clean data into dynamic Power BI intelligence, turnover root causes, and forecasting models.</p>
+          </div>
+          <div class="flow-step-card">
+            <span class="step-num">04 / ACT</span>
+            <h3>Decisions</h3>
+            <p>Empower C-suite and plant management with evidence-backed workforce allocation and policy enhancements.</p>
+          </div>
         </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content glass-card">
-                    <div class="timeline-date">Mar 2022 – Present</div>
-                    <h3 class="timeline-title">Human Resources Consultant</h3>
-                    <p class="timeline-company"><i class="fas fa-building"></i> Alpha Textile Co. – Alexandria, Egypt</p>
-                    <ul class="timeline-list">
-                        <li>Driving HR strategy aligned with business objectives</li>
-                        <li>Leading HR analytics and reporting initiatives</li>
-                        <li>Developing HR systems (HR-MASTER)</li>
-                        <li>Workforce planning and process optimization</li>
-                        <li>Providing data insights for decision-making</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content glass-card">
-                    <div class="timeline-date">Jun 2019 – Feb 2022</div>
-                    <h3 class="timeline-title">Human Resources Generalist</h3>
-                    <p class="timeline-company"><i class="fas fa-building"></i> Alpha Textile Co. – Alexandria, Egypt</p>
-                    <ul class="timeline-list">
-                        <li>Managing daily HR operations</li>
-                        <li>Recruitment & employee relations</li>
-                        <li>Attendance, payroll support, and reporting</li>
-                        <li>Ensuring compliance and improving HR processes</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="tools">
-        <div class="section-header">
-            <span class="section-label">Education</span>
-            <h2 class="section-title">Academic Background</h2>
-        </div>
-        <div class="tools-grid">
-            <div class="tool-item glass-card"><i class="fas fa-university tool-icon"></i><span class="tool-name">Diploma in HR Management – Alexandria University (2019)</span></div>
-            <div class="tool-item glass-card"><i class="fas fa-university tool-icon"></i><span class="tool-name">Diploma of Education – HR Development – Alexandria University (2018-2019)</span></div>
-            <div class="tool-item glass-card"><i class="fas fa-school tool-icon"></i><span class="tool-name">High School Diploma – Business Administration (2017)</span></div>
-        </div>
-    </section>
-
-    <section id="certifications">
-        <div class="section-header">
-            <span class="section-label">Credentials</span>
-            <h2 class="section-title">Certifications</h2>
-            <p class="section-subtitle">Continuous learning and professional development</p>
-        </div>
-        <div class="cert-grid">
-            <div class="cert-category glass-card">
-                <h3><i class="fas fa-chess-king"></i> HR & Strategy</h3>
-                <ul class="cert-list">
-                    <li><i class="fas fa-check-circle"></i> HR as a Strategic Business Partner</li>
-                    <li><i class="fas fa-check-circle"></i> Ethical HR Leadership</li>
-                    <li><i class="fas fa-check-circle"></i> Talent Management</li>
-                    <li><i class="fas fa-check-circle"></i> Organization Design</li>
-                </ul>
-            </div>
-            <div class="cert-category glass-card">
-                <h3><i class="fas fa-robot"></i> HR Analytics & AI</h3>
-                <ul class="cert-list">
-                    <li><i class="fas fa-check-circle"></i> People Analytics</li>
-                    <li><i class="fas fa-check-circle"></i> AI & Data-Driven Decision-Making for HR</li>
-                    <li><i class="fas fa-check-circle"></i> Generative AI in HR</li>
-                </ul>
-            </div>
-            <div class="cert-category glass-card">
-                <h3><i class="fas fa-database"></i> Data & Tools</h3>
-                <ul class="cert-list">
-                    <li><i class="fas fa-check-circle"></i> Career Essentials in Data Analysis (Microsoft & LinkedIn)</li>
-                    <li><i class="fas fa-check-circle"></i> Power BI Dashboards</li>
-                    <li><i class="fas fa-check-circle"></i> Excel Data Analysis & Visualization</li>
-                    <li><i class="fas fa-check-circle"></i> Data Analytics (Foundations & Advanced)</li>
-                </ul>
-            </div>
-            <div class="cert-category glass-card">
-                <h3><i class="fas fa-code"></i> Technical</h3>
-                <ul class="cert-list">
-                    <li><i class="fas fa-check-circle"></i> Database Fundamentals – ITI (2026)</li>
-                    <li><i class="fas fa-check-circle"></i> HR: Payroll</li>
-                    <li><i class="fas fa-check-circle"></i> HR: Creating an Employee Handbook</li>
-                </ul>
-            </div>
-            <div class="cert-category glass-card">
-                <h3><i class="fas fa-tasks"></i> Other Skills</h3>
-                <ul class="cert-list">
-                    <li><i class="fas fa-check-circle"></i> Agile Project Management (PMI-ACP Prep)</li>
-                    <li><i class="fas fa-check-circle"></i> Business Reporting</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="values">
-        <div class="section-header">
-            <span class="section-label">Principles</span>
-            <h2 class="section-title">Core Values</h2>
-            <p class="section-subtitle">The principles that guide my professional journey</p>
-        </div>
-        <div class="values-grid">
-            <div class="value-card glass-card"><div class="value-icon"><i class="fas fa-shield-alt"></i></div><h4>Integrity</h4></div>
-            <div class="value-card glass-card"><div class="value-icon"><i class="fas fa-users"></i></div><h4>Teamwork</h4></div>
-            <div class="value-card glass-card"><div class="value-icon"><i class="fas fa-hand-holding-heart"></i></div><h4>Ownership</h4></div>
-            <div class="value-card glass-card"><div class="value-icon"><i class="fas fa-lightbulb"></i></div><h4>Innovation</h4></div>
-        </div>
-    </section>
-
-    <section>
-        <div class="section-header">
-            <span class="section-label">Impact</span>
-            <h2 class="section-title">Key Achievements</h2>
-            <p class="section-subtitle">Results that speak for themselves</p>
-        </div>
-        <div class="achievements-grid">
-            <div class="achievement-card glass-card">
-                <div class="achievement-icon"><i class="fas fa-laptop-code"></i></div>
-                <div><h4>Developed HR-MASTER System</h4><p>Built a custom HR system for attendance tracking, workforce monitoring, and HR analytics from scratch.</p></div>
-            </div>
-            <div class="achievement-card glass-card">
-                <div class="achievement-icon"><i class="fas fa-chart-line"></i></div>
-                <div><h4>Interactive Dashboards</h4><p>Built interactive Power BI dashboards for HR decision-making and strategic workforce planning.</p></div>
-            </div>
-            <div class="achievement-card glass-card">
-                <div class="achievement-icon"><i class="fas fa-cogs"></i></div>
-                <div><h4>Improved HR Operations</h4><p>Streamlined HR operations and improved workforce efficiency through process optimization.</p></div>
-            </div>
-            <div class="achievement-card glass-card">
-                <div class="achievement-icon"><i class="fas fa-brain"></i></div>
-                <div><h4>Data-Driven Insights</h4><p>Supported leadership with actionable data-driven insights for strategic decision-making.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <div class="section-header">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="section-subtitle">Ready to collaborate on your next HR transformation project</p>
-            </div>
-            <div class="contact-card glass-card">
-                <h2>Let's Work Together</h2>
-                <p>I am always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-                <div class="contact-info">
-                    <a href="tel:+201066814959" class="contact-item"><i class="fas fa-phone"></i><span>+20 106 681 4959</span></a>
-                    <a href="#" class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Alexandria, Egypt</span></a>
-                </div>
-                <div class="contact-socials">
-                    <a href="https://www.linkedin.com/in/ehab-shehata" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="tel:+201066814959" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:ehab@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer><p>2026 <span>Ehab Shehata</span>. All Rights Reserved. | HR Business Partner & Analytics Expert</p></footer>
-
-    <script>
-        // --- Custom Cursor Logic ---
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
         
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            
-            // Smoother delay for outline
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
+        <div class="manifesto-quote" style="margin-top: 28px;">
+          The objective is not simply to report what happened — it is to make workforce information actionable for what happens next.
+        </div>
+      </section>
 
-        document.querySelectorAll('a, button, .glass-card').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                cursorOutline.classList.add('cursor-hover');
-                cursorDot.style.backgroundColor = 'transparent';
-            });
-            link.addEventListener('mouseleave', () => {
-                cursorOutline.classList.remove('cursor-hover');
-                cursorDot.style.backgroundColor = 'var(--primary)';
-            });
-        });
+      <!-- SLIDE 05: PROFESSIONAL EXPERIENCE -->
+      <section class="slide" data-title="Professional Experience" id="slide-4">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">04 / Career Trajectory</div>
+            <h2 class="title-xl">Built Through<br><span class="accent-text">Hands-On HR.</span></h2>
+          </div>
+          <span class="index-indicator">04 — 09</span>
+        </div>
 
-        // --- Init Vanilla Tilt for 3D Cards ---
-        VanillaTilt.init(document.querySelectorAll(".glass-card"), {
-            max: 10,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.15,
-            perspective: 1000,
-            scale: 1.02
-        });
+        <div class="timeline-grid">
+          <div class="experience-card">
+            <span class="exp-date"><i class="fa-solid fa-clock"></i> Mar 2022 — Present</span>
+            <h3 class="exp-role">Human Resources Consultant</h3>
+            <div class="exp-company"><i class="fa-solid fa-building" style="color: var(--crimson);"></i> Alpha Textile Co. · Alexandria, Egypt</div>
+            <ul class="exp-bullets">
+              <li>Drive strategic HR alignment with macro business objectives and production goals.</li>
+              <li>Lead enterprise HR analytics and executive reporting initiatives across plant departments.</li>
+              <li>Engineered and deployed proprietary HR systems, including the flagship HR-MASTER.</li>
+              <li>Spearhead workforce planning, SAM calculations, and production-line balancing.</li>
+              <li>Deliver predictive workforce insights to facilitate top-tier executive decisions.</li>
+            </ul>
+          </div>
 
-        // --- Loading screen ---
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                gsap.to('#loader', {
-                    opacity: 0, duration: 1, ease: "power2.inOut",
-                    onComplete: () => {
-                        document.getElementById('loader').style.display = 'none';
-                        initAnimations();
-                    }
-                });
-            }, 2200);
-        });
+          <div class="experience-card">
+            <span class="exp-date"><i class="fa-solid fa-history"></i> Jun 2019 — Feb 2022</span>
+            <h3 class="exp-role">Human Resources Generalist</h3>
+            <div class="exp-company"><i class="fa-solid fa-building" style="color: var(--crimson);"></i> Alpha Textile Co. · Alexandria, Egypt</div>
+            <ul class="exp-bullets">
+              <li>Orchestrated full-spectrum day-to-day HR operations for hundreds of personnel.</li>
+              <li>Supervised end-to-end recruitment funnels, talent onboarding, and employee relations.</li>
+              <li>Streamlined attendance tracking, payroll preparation, and statutory regulatory compliance.</li>
+              <li>Pioneered continuous process optimization to eliminate departmental paperwork bottlenecks.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-        // --- Enhanced Particles Canvas (Mouse Interactive) ---
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
+      <!-- SLIDE 06: HR-MASTER & DIGITAL TOOLKIT -->
+      <section class="slide" data-title="HR-MASTER and Tools" id="slide-5">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">05 / Systems & Technology</div>
+            <h2 class="title-xl">Technology with<br><span class="accent-text">an HR Purpose.</span></h2>
+            <p class="sub-lead">A comprehensive technical stack bridging data science, backend logic, and everyday HR operations.</p>
+          </div>
+          <span class="index-indicator">05 — 09</span>
+        </div>
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-        });
+        <div class="toolkit-layout">
+          <div class="hr-master-hero">
+            <span class="hr-badge"><i class="fa-solid fa-microchip"></i> FLAGSHIP INNOVATION</span>
+            <h3>HR-MASTER</h3>
+            <p>
+              A purpose-built, custom HR software suite designed and coded from scratch for workforce monitoring, automated attendance reconciliation, and real-time operational analytics.
+            </p>
+            <div class="manifesto-quote" style="margin-top: 18px; border-color: white;">
+              A living proof of combining deep domain HR experience with full-stack software development.
+            </div>
+          </div>
 
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+          <div class="tool-chips-cloud">
+            <div class="tool-chip" title="Interactive KPI Dashboards & DAX Modeling"><i class="fa-solid fa-chart-column"></i> Power BI</div>
+            <div class="tool-chip" title="Advanced Modeling & Analytics"><i class="fa-solid fa-file-excel"></i> Microsoft Excel</div>
+            <div class="tool-chip" title="Relational Data Architecture"><i class="fa-solid fa-database"></i> MySQL</div>
+            <div class="tool-chip" title="Backend Web Application Engineering"><i class="fa-brands fa-php"></i> PHP</div>
+            <div class="tool-chip" title="Proprietary HRIS Platform"><i class="fa-solid fa-laptop-code"></i> HR-MASTER</div>
+            <div class="tool-chip" title="Predictive Workforce Modeling"><i class="fa-solid fa-brain"></i> AI & Data Analytics</div>
+            <div class="tool-chip" title="Adaptive Iterative Project Delivery"><i class="fa-solid fa-diagram-project"></i> Agile Project Management</div>
+          </div>
+        </div>
+      </section>
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
-                this.speedX = (Math.random() - 0.5) * 0.8;
-                this.speedY = (Math.random() - 0.5) * 0.8;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-            update() {
-                // Random movement
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+      <!-- SLIDE 07: EDUCATION & CREDENTIALS -->
+      <section class="slide" data-title="Education and Credentials" id="slide-6">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">06 / Continuous Growth</div>
+            <h2 class="title-xl">A Foundation in HR.<br><span class="accent-text">A Habit of Learning.</span></h2>
+          </div>
+          <span class="index-indicator">06 — 09</span>
+        </div>
 
-                // Mouse Interaction (Push effect)
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                let forceDirectionX = dx / distance;
-                let forceDirectionY = dy / distance;
-                let maxDistance = mouse.radius;
-                let force = (maxDistance - distance) / maxDistance;
-                let directionX = forceDirectionX * force * this.density;
-                let directionY = forceDirectionY * force * this.density;
+        <div class="credentials-grid">
+          <div class="cred-card">
+            <div class="cred-header"><i class="fa-solid fa-chess"></i><h3>HR & Strategy</h3></div>
+            <div class="cred-list">
+              • HR as a Strategic Business Partner<br>
+              • Ethical HR Leadership<br>
+              • Talent Management Systems<br>
+              • Organizational Design
+            </div>
+          </div>
 
-                if (distance < mouse.radius) {
-                    this.x -= directionX;
-                    this.y -= directionY;
-                }
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 42, 42, ${this.opacity})`;
-                ctx.fill();
-            }
+          <div class="cred-card">
+            <div class="cred-header"><i class="fa-solid fa-robot"></i><h3>Analytics & AI</h3></div>
+            <div class="cred-list">
+              • People Analytics<br>
+              • AI & Data-Driven Decision-Making for HR<br>
+              • Generative AI Applications in HR
+            </div>
+          </div>
+
+          <div class="cred-card">
+            <div class="cred-header"><i class="fa-solid fa-chart-line"></i><h3>Data & Visualization</h3></div>
+            <div class="cred-list">
+              • Career Essentials in Data Analysis<br>
+              • Power BI Advanced Dashboards<br>
+              • Excel Data Analytics & Modeling<br>
+              • Statistical Workforce Analysis
+            </div>
+          </div>
+
+          <div class="cred-card">
+            <div class="cred-header"><i class="fa-solid fa-code"></i><h3>Technical Foundations</h3></div>
+            <div class="cred-list">
+              • Database Fundamentals — ITI (2026)<br>
+              • HR: Payroll Systems Engineering<br>
+              • HR: Creating an Employee Handbook
+            </div>
+          </div>
+
+          <div class="cred-card">
+            <div class="cred-header"><i class="fa-solid fa-list-check"></i><h3>Management Methodologies</h3></div>
+            <div class="cred-list">
+              • Agile Project Management (PMI-ACP Prep)<br>
+              • Advanced Business & Operational Reporting
+            </div>
+          </div>
+
+          <div class="cred-card">
+            <div class="cred-header"><i class="fa-solid fa-graduation-cap"></i><h3>Academic Honors</h3></div>
+            <div class="cred-list">
+              • Diploma in HR Management — Alexandria University (2019)<br>
+              • Diploma of Education, HR Development (2018–2019)<br>
+              • B.Sc. Business Administration (2017)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 08: PRINCIPLES & IMPACT -->
+      <section class="slide" data-title="Principles and Impact" id="slide-7">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">07 / Ethics & Proof</div>
+            <h2 class="title-xl">The Principles Behind<br><span class="accent-text">the Impact.</span></h2>
+          </div>
+          <span class="index-indicator">07 — 09</span>
+        </div>
+
+        <div class="values-row">
+          <div class="value-box">
+            <i class="fa-solid fa-shield-halved"></i>
+            <b>Integrity</b>
+          </div>
+          <div class="value-box">
+            <i class="fa-solid fa-people-group"></i>
+            <b>Teamwork</b>
+          </div>
+          <div class="value-box">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <b>Ownership</b>
+          </div>
+          <div class="value-box">
+            <i class="fa-regular fa-lightbulb"></i>
+            <b>Innovation</b>
+          </div>
+        </div>
+
+        <div class="impacts-row">
+          <div class="impact-item">
+            <i class="fa-solid fa-laptop-code"></i>
+            <div>
+              <b>HR-MASTER Enterprise Deployment</b>
+              <span>Built custom software driving real-time attendance tracking, headcount verification, and self-service HR analytics.</span>
+            </div>
+          </div>
+          <div class="impact-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <div>
+              <b>Interactive Power BI Intelligence</b>
+              <span>Constructed executive dashboards illuminating turnover risk, plant line efficiency, and workforce cost trends.</span>
+            </div>
+          </div>
+          <div class="impact-item">
+            <i class="fa-solid fa-gears"></i>
+            <div>
+              <b>Process Re-engineering</b>
+              <span>Streamlined everyday personnel operations, cutting administrative overhead through smart standardized workflows.</span>
+            </div>
+          </div>
+          <div class="impact-item">
+            <i class="fa-solid fa-brain"></i>
+            <div>
+              <b>Actionable Decision Support</b>
+              <span>Translated ambiguous human metrics into boardroom-ready models, enabling proactive retention and capacity planning.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 09: LET'S CONNECT -->
+      <section class="slide" data-title="Let's Connect" id="slide-8">
+        <div class="contact-hero-card">
+          <div class="eyebrow" style="color: var(--coral);">08 / Partnership</div>
+          <h2 class="title-xl">Let's Build Better<br><span class="accent-text">Workforce Outcomes.</span></h2>
+          <p class="sub-lead">
+            Open to high-impact engagements in HR Transformation, People Analytics Architecture, Workforce Planning, and Custom HRIS Development.
+          </p>
+
+          <div class="contact-links-grid">
+            <a class="contact-link-pill" href="https://www.linkedin.com/in/ehab-shehata" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-linkedin"></i> linkedin.com/in/ehab-shehata
+            </a>
+            <button class="contact-link-pill" onclick="copyContact()">
+              <i class="fa-solid fa-phone"></i> +20 106 681 4959 (Copy)
+            </button>
+            <span class="contact-link-pill" style="cursor: default;">
+              <i class="fa-solid fa-location-dot"></i> Alexandria, Egypt
+            </span>
+            <button class="contact-link-pill" onclick="window.print()">
+              <i class="fa-solid fa-print"></i> Print / Save as PDF
+            </button>
+          </div>
+
+          <div style="margin-top: 48px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; color: var(--muted);">
+            EHAB SHEHATA <span style="color: var(--crimson);">//</span> HR BUSINESS PARTNER & WORKFORCE ANALYTICS
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- Floating HUD Controls Dock -->
+<nav class="controls-dock" aria-label="Deck Navigation">
+  <button class="nav-btn" id="prevBtn" title="Previous Slide (←)"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="nav-btn" id="nextBtn" title="Next Slide (→)"><i class="fa-solid fa-chevron-right"></i></button>
+  
+  <div class="progress-rail" title="Slide Progress">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  
+  <div class="slide-counter" id="counterText">01 / 09</div>
+  
+  <div class="dock-divider"></div>
+  
+  <span class="hint-text">← → Keys · O Overview · V Mode</span>
+  
+  <button class="nav-btn" id="overviewBtn" title="All Slides Overview (O)"><i class="fa-solid fa-grip"></i></button>
+  <button class="nav-btn" id="replayBtn" title="Replay Animation"><i class="fa-solid fa-rotate-right"></i></button>
+</nav>
+
+<!-- Overview Grid Modal -->
+<div class="overview-modal" id="overviewModal">
+  <div class="overview-top">
+    <div>
+      <div class="eyebrow">Slide Navigator</div>
+      <h2 style="font-family: var(--font-display); font-size: 32px; font-weight: 700;">Executive Deck Overview</h2>
+    </div>
+    <button class="btn-icon" id="closeOverviewBtn" style="width: 44px; height: 44px; font-size: 18px;">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="thumbs-grid" id="thumbsGrid"></div>
+</div>
+
+<!-- Command Palette Modal -->
+<div class="cmd-palette-backdrop" id="cmdModal">
+  <div class="cmd-box">
+    <div class="cmd-input-wrap">
+      <i class="fa-solid fa-terminal"></i>
+      <input type="text" class="cmd-input" id="cmdInput" placeholder="Type a command or section name..." autofocus autocomplete="off">
+      <kbd>ESC</kbd>
+    </div>
+    <div class="cmd-list" id="cmdList">
+      <div class="cmd-item" data-action="slide:0"><i class="fa-solid fa-house"></i> 01 - The Introduction</div>
+      <div class="cmd-item" data-action="slide:1"><i class="fa-solid fa-user-tie"></i> 02 - Professional Overview</div>
+      <div class="cmd-item" data-action="slide:2"><i class="fa-solid fa-cubes"></i> 03 - Core Expertise</div>
+      <div class="cmd-item" data-action="slide:3"><i class="fa-solid fa-route"></i> 04 - Digital HR Approach</div>
+      <div class="cmd-item" data-action="slide:4"><i class="fa-solid fa-briefcase"></i> 05 - Professional Experience</div>
+      <div class="cmd-item" data-action="slide:5"><i class="fa-solid fa-microchip"></i> 06 - HR-MASTER and Tools</div>
+      <div class="cmd-item" data-action="slide:6"><i class="fa-solid fa-graduation-cap"></i> 07 - Education & Credentials</div>
+      <div class="cmd-item" data-action="slide:7"><i class="fa-solid fa-award"></i> 08 - Principles & Impact</div>
+      <div class="cmd-item" data-action="slide:8"><i class="fa-solid fa-paper-plane"></i> 09 - Let's Connect</div>
+      <div class="cmd-item" data-action="copy:phone"><i class="fa-solid fa-copy"></i> Copy Phone Number (+20 106 681 4959)</div>
+      <div class="cmd-item" data-action="open:linkedin"><i class="fa-brands fa-linkedin"></i> Open LinkedIn Profile</div>
+      <div class="cmd-item" data-action="toggle:mode"><i class="fa-solid fa-repeat"></i> Toggle Presentation / Scroll View</div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Toast -->
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i>
+  <span id="toastMsg">Copied to clipboard!</span>
+</div>
+
+<!-- ==========================================================================
+   INTERACTIVE JAVASCRIPT ENGINE
+   ========================================================================== -->
+<script>
+(() => {
+  // DOM References
+  const slides = [...document.querySelectorAll('.slide')];
+  const progressFill = document.getElementById('progressFill');
+  const counterText = document.getElementById('counterText');
+  const overviewModal = document.getElementById('overviewModal');
+  const thumbsGrid = document.getElementById('thumbsGrid');
+  const cmdModal = document.getElementById('cmdModal');
+  const cmdInput = document.getElementById('cmdInput');
+  const cmdList = document.getElementById('cmdList');
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  const soundToggleBtn = document.getElementById('soundToggleBtn');
+  const soundIcon = document.getElementById('soundIcon');
+  const modeToggleBtn = document.getElementById('modeToggleBtn');
+  
+  let current = 0;
+  let isBusy = false;
+  let soundEnabled = false;
+  let isScrollMode = false;
+  
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Web Audio Synthesizer for high-tech clicks
+  let audioCtx = null;
+  function playBeep(freq = 600, duration = 0.05, type = 'sine') {
+    if (!soundEnabled) return;
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch(e) {}
+  }
+
+  // Toast Functionality
+  function showToast(text) {
+    toastMsg.textContent = text;
+    toast.classList.add('show');
+    playBeep(880, 0.08, 'triangle');
+    setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+
+  // Slide Entrance Animation
+  function animateIn(slide) {
+    if (prefersReduced || !window.gsap) return;
+    const elements = slide.querySelectorAll('.eyebrow, .title-xl, .sub-lead, .hero-badge-wrap, .hero-title, .hero-role-box, .hero-description, .hero-actions, .stat-card, .tilt-card, .flow-step-card, .experience-card, .hr-master-hero, .tool-chip, .cred-card, .value-box, .impact-item, .contact-hero-card');
+    gsap.fromTo(elements, 
+      { y: 22, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 0.6, stagger: 0.045, ease: 'power3.out', clearProps: 'all' }
+    );
+    
+    // Live counter animation
+    slide.querySelectorAll('[data-count]').forEach(el => {
+      const target = Number(el.dataset.count);
+      let v = 0;
+      const tick = () => {
+        v = Math.min(target, v + 0.15);
+        el.textContent = Math.round(v);
+        if (v < target) requestAnimationFrame(tick);
+      };
+      tick();
+    });
+  }
+
+  // Slide Switching Logic
+  function showSlide(index, dir = 1) {
+    if (isBusy && !isScrollMode) return;
+    index = Math.max(0, Math.min(slides.length - 1, index));
+    if (index === current && !isScrollMode) return;
+
+    if (isScrollMode) {
+      current = index;
+      slides[index].scrollIntoView({ behavior: 'smooth' });
+      updateHUD();
+      return;
+    }
+
+    isBusy = true;
+    const oldSlide = slides[current];
+    const newSlide = slides[index];
+    playBeep(450, 0.06);
+
+    oldSlide.classList.remove('active');
+
+    if (window.gsap && !prefersReduced) {
+      gsap.set(newSlide, { display: 'flex', opacity: 0, x: dir * 45, scale: 0.98 });
+      newSlide.classList.add('active');
+      
+      gsap.to(oldSlide, {
+        opacity: 0,
+        x: -dir * 30,
+        duration: 0.28,
+        ease: 'power2.in',
+        onComplete: () => {
+          gsap.set(oldSlide, { clearProps: 'all', display: 'none' });
         }
+      });
 
-        function initParticles() {
-            particles = [];
-            const count = Math.min(window.innerWidth / 8, 120); // slightly more particles
-            for (let i = 0; i < count; i++) particles.push(new Particle());
+      gsap.to(newSlide, {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 0.55,
+        ease: 'power3.out',
+        onComplete: () => {
+          isBusy = false;
+          animateIn(newSlide);
         }
-        initParticles();
+      });
+    } else {
+      oldSlide.style.display = 'none';
+      newSlide.style.display = 'flex';
+      newSlide.classList.add('active');
+      isBusy = false;
+    }
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((particle, index) => {
-                particle.update(); particle.draw();
-                // Connect Particles
-                for (let j = index + 1; j < particles.length; j++) {
-                    const dx = particles[j].x - particle.x;
-                    const dy = particles[j].y - particle.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(particle.x, particle.y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        // Glow based on distance
-                        ctx.strokeStyle = `rgba(255, 42, 42, ${0.15 * (1 - distance / 120)})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
-                }
-                
-                // Connect to mouse
-                if(mouse.x != null) {
-                    let dxMouse = particle.x - mouse.x;
-                    let dyMouse = particle.y - mouse.y;
-                    let distMouse = Math.sqrt(dxMouse*dxMouse + dyMouse*dyMouse);
-                    if(distMouse < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(particle.x, particle.y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.strokeStyle = `rgba(255, 42, 42, ${0.2 * (1 - distMouse / 150)})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
-            });
-            requestAnimationFrame(animateParticles);
+    current = index;
+    updateHUD();
+  }
+
+  function updateHUD() {
+    progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
+    counterText.textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    
+    // Update active thumb
+    document.querySelectorAll('.thumb-card').forEach((th, i) => {
+      th.classList.toggle('active-thumb', i === current);
+    });
+  }
+
+  function go(n) {
+    showSlide(n, n > current ? 1 : -1);
+  }
+
+  // Navigation Event Listeners
+  document.getElementById('nextBtn').onclick = () => go(current + 1);
+  document.getElementById('prevBtn').onclick = () => go(current - 1);
+
+  // Overview Generation
+  slides.forEach((slide, i) => {
+    const thumb = document.createElement('div');
+    thumb.className = `thumb-card ${i === 0 ? 'active-thumb' : ''}`;
+    thumb.innerHTML = `
+      <small>SLIDE ${String(i + 1).padStart(2, '0')}</small>
+      <b>${slide.dataset.title}</b>
+    `;
+    thumb.onclick = () => {
+      overviewModal.classList.remove('open');
+      go(i);
+    };
+    thumbsGrid.appendChild(thumb);
+  });
+
+  document.getElementById('overviewBtn').onclick = () => overviewModal.classList.add('open');
+  document.getElementById('closeOverviewBtn').onclick = () => overviewModal.classList.remove('open');
+  document.getElementById('replayBtn').onclick = () => animateIn(slides[current]);
+
+  // View Mode Toggle (Slide Deck vs Continuous Scroll)
+  modeToggleBtn.onclick = () => {
+    isScrollMode = !isScrollMode;
+    document.body.classList.toggle('mode-scroll', isScrollMode);
+    modeToggleBtn.classList.toggle('active', isScrollMode);
+    showToast(isScrollMode ? 'Switched to Scroll Showcase View' : 'Switched to Presentation Slide View');
+    if (!isScrollMode) {
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === current);
+        if (idx !== current) s.style.display = 'none';
+        else s.style.display = 'flex';
+      });
+      animateIn(slides[current]);
+    }
+  };
+
+  // Sound FX Toggle
+  soundToggleBtn.onclick = () => {
+    soundEnabled = !soundEnabled;
+    soundToggleBtn.classList.toggle('active', soundEnabled);
+    soundIcon.className = soundEnabled ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+    showToast(soundEnabled ? 'Audio Effects Enabled' : 'Audio Effects Muted');
+    if (soundEnabled) playBeep(750, 0.1);
+  };
+
+  // Fullscreen Toggle
+  document.getElementById('fullBtn').onclick = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
+
+  // Clipboard Contact Helper
+  window.copyContact = () => {
+    navigator.clipboard.writeText('+201066814959').then(() => {
+      showToast('Phone number (+20 106 681 4959) copied!');
+    }).catch(() => {
+      showToast('+20 106 681 4959');
+    });
+  };
+
+  // Dynamic Typing Role Matrix in Hero
+  const roles = [
+    'HR Business Partner',
+    'HR Analytics Expert',
+    'Power BI Developer',
+    'HRIS Systems Architect',
+    'Workforce Planning Specialist',
+    'PHP & MySQL Developer'
+  ];
+  let roleIdx = 0;
+  const roleEl = document.getElementById('roleText');
+  setInterval(() => {
+    roleIdx = (roleIdx + 1) % roles.length;
+    if (roleEl && current === 0) {
+      roleEl.style.opacity = '0';
+      roleEl.style.transform = 'translateY(6px)';
+      setTimeout(() => {
+        roleEl.textContent = roles[roleIdx];
+        roleEl.style.opacity = '1';
+        roleEl.style.transform = 'translateY(0)';
+      }, 250);
+    }
+  }, 3000);
+
+  // Command Palette
+  const cmdBtn = document.getElementById('cmdBtn');
+  function toggleCmd(show) {
+    cmdModal.classList.toggle('open', show);
+    if (show) {
+      cmdInput.value = '';
+      cmdInput.focus();
+      filterCmd('');
+    }
+  }
+  cmdBtn.onclick = () => toggleCmd(true);
+
+  function filterCmd(query) {
+    const q = query.toLowerCase();
+    cmdList.querySelectorAll('.cmd-item').forEach(item => {
+      const match = item.textContent.toLowerCase().includes(q);
+      item.style.display = match ? 'flex' : 'none';
+    });
+  }
+  cmdInput.addEventListener('input', (e) => filterCmd(e.target.value));
+
+  cmdList.querySelectorAll('.cmd-item').forEach(item => {
+    item.onclick = () => {
+      const act = item.dataset.action;
+      toggleCmd(false);
+      if (act.startsWith('slide:')) {
+        go(Number(act.split(':')[1]));
+      } else if (act === 'copy:phone') {
+        copyContact();
+      } else if (act === 'open:linkedin') {
+        window.open('https://www.linkedin.com/in/ehab-shehata', '_blank');
+      } else if (act === 'toggle:mode') {
+        modeToggleBtn.click();
+      }
+    };
+  });
+
+  // Keyboard Shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (cmdModal.classList.contains('open')) {
+      if (e.key === 'Escape') toggleCmd(false);
+      return;
+    }
+    if (overviewModal.classList.contains('open')) {
+      if (e.key === 'Escape' || e.key.toLowerCase() === 'o') overviewModal.classList.remove('open');
+      return;
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      toggleCmd(!cmdModal.classList.contains('open'));
+      return;
+    }
+
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key) && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+      e.preventDefault();
+      go(current + 1);
+    } else if (['ArrowLeft', 'PageUp'].includes(e.key) && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+      e.preventDefault();
+      go(current - 1);
+    } else if (e.key.toLowerCase() === 'o') {
+      overviewModal.classList.toggle('open');
+    } else if (e.key.toLowerCase() === 'f') {
+      document.getElementById('fullBtn').click();
+    } else if (e.key.toLowerCase() === 'v') {
+      modeToggleBtn.click();
+    } else if (e.key.toLowerCase() === 'm') {
+      soundToggleBtn.click();
+    } else if (e.key === 'Home') {
+      go(0);
+    } else if (e.key === 'End') {
+      go(slides.length - 1);
+    }
+  });
+
+  // Mobile Swipe Detection
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, { passive: true });
+  document.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(diff) > 55 && !isScrollMode) {
+      go(current + (diff < 0 ? 1 : -1));
+    }
+  }, { passive: true });
+
+  // 3D Tilt Card Effect on Mouse Move
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -9;
+      const rotateY = ((x - centerX) / centerX) * 9;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+  });
+
+  // Interactive Particle Constellation Canvas
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let width, height, particles = [];
+
+  function resizeCanvas() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  const particleCount = Math.min(50, Math.floor(window.innerWidth / 28));
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      radius: Math.random() * 1.6 + 0.8,
+      alpha: Math.random() * 0.5 + 0.2
+    });
+  }
+
+  function renderCanvas() {
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw lines between close particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(255, 42, 75, ${0.12 * (1 - dist / 130)})`;
+          ctx.lineWidth = 0.8;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
         }
-        animateParticles();
+      }
+    }
 
-        // --- Typing Effect ---
-        const titles = ['HR Business Partner', 'HR Analytics Expert', 'Power BI Developer', 'HRIS Developer', 'PHP & MySQL Developer'];
-        let titleIndex = 0, charIndex = 0, isDeleting = false;
-        const typingElement = document.getElementById('typing');
+    // Draw particles
+    for (let p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
 
-        function typeEffect() {
-            const currentTitle = titles[titleIndex];
-            if (isDeleting) {
-                typingElement.textContent = currentTitle.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentTitle.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            let typeSpeed = isDeleting ? 40 : 100;
-            if (!isDeleting && charIndex === currentTitle.length) { typeSpeed = 2500; isDeleting = true; }
-            else if (isDeleting && charIndex === 0) { isDeleting = false; titleIndex = (titleIndex + 1) % titles.length; typeSpeed = 500; }
-            setTimeout(typeEffect, typeSpeed);
-        }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+      ctx.fill();
+    }
 
-        // --- Cinematic GSAP Animations ---
-        function initAnimations() {
-            gsap.registerPlugin(ScrollTrigger);
-            typeEffect();
+    requestAnimationFrame(renderCanvas);
+  }
+  renderCanvas();
 
-            // Hero Timeline
-            const tlHero = gsap.timeline();
-            tlHero.from('.hero-badge', { opacity: 0, y: -30, scale: 0.8, duration: 0.8, ease: "back.out(1.7)" })
-                  .from('.hero-name', { opacity: 0, y: 50, skewY: 5, duration: 1, ease: "power4.out" }, "-=0.4")
-                  .from('.hero-title', { opacity: 0, x: -30, duration: 0.8, ease: "power3.out" }, "-=0.6")
-                  .from('.hero-desc', { opacity: 0, y: 20, duration: 0.8 }, "-=0.4")
-                  .from('.hero-buttons a', { opacity: 0, y: 20, stagger: 0.2, duration: 0.6, ease: "back.out(1.5)" }, "-=0.4")
-                  .from('.hero-socials a', { opacity: 0, scale: 0, stagger: 0.1, duration: 0.5, ease: "back.out(2)" }, "-=0.2")
-                  .from('.hero-image-wrapper', { opacity: 0, scale: 0.5, rotation: 15, duration: 1.5, ease: "elastic.out(1, 0.5)" }, "-=1.5")
-                  .from('.orbit-ring', { opacity: 0, scale: 0, stagger: 0.2, duration: 1.5, ease: "power2.out" }, "-=1.2");
-
-            // Section headers reveal
-            gsap.utils.toArray('.section-header').forEach(header => {
-                gsap.from(header, { 
-                    scrollTrigger: { trigger: header, start: 'top 85%' }, 
-                    opacity: 0, y: 50, duration: 1, ease: "power3.out" 
-                });
-            });
-
-            // Reusable card stagger reveal logic
-            const revealCards = (selector, triggerConfig) => {
-                gsap.from(selector, {
-                    scrollTrigger: triggerConfig,
-                    opacity: 0, y: 80, rotationX: 10, stagger: 0.15, duration: 1, ease: "power4.out"
-                });
-            };
-
-            revealCards('.stat-card', { trigger: '.about-stats', start: 'top 85%' });
-            revealCards('.expertise-card', { trigger: '.expertise-grid', start: 'top 80%' });
-            revealCards('.tool-item', { trigger: '.tools-grid', start: 'top 85%' });
-            revealCards('.cert-category', { trigger: '.cert-grid', start: 'top 85%' });
-            revealCards('.value-card', { trigger: '.values-grid', start: 'top 85%' });
-            revealCards('.achievement-card', { trigger: '.achievements-grid', start: 'top 85%' });
-
-            // Counters
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                ScrollTrigger.create({
-                    trigger: counter, start: 'top 90%',
-                    onEnter: () => { gsap.to(counter, { innerHTML: target, duration: 2.5, snap: { innerHTML: 1 }, ease: "power3.out" }); },
-                    once: true
-                });
-            });
-
-            // Timeline items
-            gsap.utils.toArray('.timeline-item').forEach((item, i) => {
-                gsap.from(item, { 
-                    scrollTrigger: { trigger: item, start: 'top 80%' }, 
-                    opacity: 0, x: i % 2 === 0 ? -100 : 100, duration: 1.2, ease: "power3.out" 
-                });
-            });
-
-            // Contact card
-            gsap.from('.contact-card', { 
-                scrollTrigger: { trigger: '.contact-card', start: 'top 85%' }, 
-                opacity: 0, scale: 0.9, y: 50, duration: 1.2, ease: "power4.out" 
-            });
-        }
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        });
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '70px';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.background = 'rgba(3,3,3,0.98)';
-            navLinks.style.padding = '20px';
-            navLinks.style.backdropFilter = 'blur(20px)';
-            navLinks.style.borderBottom = '1px solid rgba(255,42,42,0.2)';
-            navLinks.style.boxShadow = '0 20px 40px rgba(0,0,0,0.8)';
-        }
-    </script>
+  // Initial Launch
+  animateIn(slides[0]);
+  updateHUD();
+  window.go = go;
+})();
+</script>
 </body>
 </html>
